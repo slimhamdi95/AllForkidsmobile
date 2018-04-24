@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author FATNASSI
+ * @author Slim
  */
 public class Evenement {
     
