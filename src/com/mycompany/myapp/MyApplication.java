@@ -1,5 +1,6 @@
 package com.mycompany.myapp;
 
+import Forms.HomeForm;
 import static com.codename1.ui.CN.*;
 import com.codename1.io.Log;
 import com.codename1.ui.Button;
@@ -26,13 +27,10 @@ import com.codename1.io.NetworkEvent;
  */
 public class MyApplication {
 
-    private Form current;
+      private Form current;
     private Resources theme;
 
     public void init(Object context) {
-        // use two network threads instead of one
-        updateNetworkThreadCount(2);
-
         theme = UIManager.initFirstTheme("/theme");
 
         // Enable Toolbar on all Forms by default
@@ -40,66 +38,41 @@ public class MyApplication {
 
         // Pro only feature
         Log.bindCrashProtection(true);
-
-        addNetworkErrorListener(err -> {
-            // prevent the event from propagating
-            err.consume();
-            if(err.getError() != null) {
-                Log.e(err.getError());
-            }
-            Log.sendLogAsync();
-            Dialog.show("Connection Error", "There was a networking error in the connection to " + err.getConnectionRequest().getUrl(), "OK", null);
-        });        
     }
-    
+
     public void start() {
-        if(current != null){
+        if (current != null) {
             current.show();
             return;
         }
-        Form hi = new Form("Welcome", new BorderLayout(BorderLayout.CENTER_BEHAVIOR_CENTER_ABSOLUTE));
-        final Label apple = new Label(theme.getImage("apple-icon.png")); 
-        final Label android = new Label(theme.getImage("android-icon.png")); 
-        final Label windows = new Label(theme.getImage("windows-icon.png")); 
-        Button getStarted = new Button("Let's Get Started!");
-        FontImage.setMaterialIcon(getStarted, FontImage.MATERIAL_LINK);
-        getStarted.setUIID("GetStarted");
-        hi.addComponent(BorderLayout.CENTER, 
-                LayeredLayout.encloseIn(
-                        BoxLayout.encloseY(
-                                new Label(theme.getImage("duke-no-logos.png")),
-                                getStarted
-                        ),
-                        FlowLayout.encloseRightMiddle(apple)
-                    )
-        );
-        
-        getStarted.addActionListener((e) -> {
-            execute("https://www.codenameone.com/developers.html");
-        });
-        
-        new UITimer(() -> {
-            if(apple.getParent() != null) {
-                apple.getParent().replace(apple, android, CommonTransitions.createFade(500));
-            } else {
-                if(android.getParent() != null) {
-                    android.getParent().replace(android, windows, CommonTransitions.createFade(500));
-                } else {
-                    windows.getParent().replace(windows, apple, CommonTransitions.createFade(500));
-                }                
+        HomeForm h = new HomeForm();
+        h.getF().show();
+/*/
+      ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://41.226.11.243:10004/tasks/");
+          NetworkManager.getInstance().addToQueue(con);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                ServiceTask ser = new ServiceTask();
+                List<Task> list = ser.getListTask(new String(con.getResponseData()));
+                System.out.println(list);
+                
+                
             }
-        }).schedule(2200, true, hi);
-        hi.show();
+        });
+        //*/
     }
 
     public void stop() {
         current = getCurrentForm();
-        if(current instanceof Dialog) {
-            ((Dialog)current).dispose();
+        if (current instanceof Dialog) {
+            ((Dialog) current).dispose();
             current = getCurrentForm();
         }
     }
-    
+
     public void destroy() {
     }
 
