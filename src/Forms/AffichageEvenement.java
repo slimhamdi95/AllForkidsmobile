@@ -5,9 +5,11 @@
  */
 package Forms;
 
+import Entity.Evenement;
 import Services.EvenementService;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Form;
+import com.codename1.ui.Label;
 
 /**
  *
@@ -16,13 +18,18 @@ import com.codename1.ui.Form;
 public class AffichageEvenement {
      Form f;
     SpanLabel lb;
-  
+    Label nom ;
     public AffichageEvenement() {
         
         f = new Form();
         lb = new SpanLabel("");
+        nom = new Label();
         f.add(lb);
+        f.add(nom);
         EvenementService serviceevent=new EvenementService();
+        for (Evenement e : serviceevent.getList2()) {
+            
+        }
         lb.setText(serviceevent.getList2().toString());
        
           f.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();
