@@ -19,24 +19,19 @@ import com.codename1.ui.TextField;
 public class HomeForm {
 
     Form f;
-    TextField tnom;
-    TextField tetat;
+   
     Button btnajout,btnaff;
 
     public HomeForm() {
         f = new Form("home");
-        tnom = new TextField();
-        tetat = new TextField();
+       
         btnajout = new Button("ajouter");
         btnaff=new Button("Affichage");
-        f.add(tnom);
-        f.add(tetat);
+       
         f.add(btnajout);
         f.add(btnaff);
         btnajout.addActionListener((e) -> {
-            EvenementService ser = new EvenementService();
-            Evenement t = new Evenement(0, tnom.getText(), tetat.getText());
-            ser.addEvenement(t);
+           
             
 
         });
@@ -54,12 +49,6 @@ public class HomeForm {
         this.f = f;
     }
 
-    public TextField getTnom() {
-        return tnom;
-    }
-
-    public void setTnom(TextField tnom) {
-        this.tnom = tnom;
-    }
+  
 
 }
