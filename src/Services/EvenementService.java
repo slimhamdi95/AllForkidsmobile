@@ -73,7 +73,7 @@ public class EvenementService {
         return listEvent;
 
     }
-            ArrayList<Evenement> listTasks = new ArrayList<>();
+            ArrayList<Evenement> listEvenement = new ArrayList<>();
     
     
 
@@ -84,10 +84,10 @@ public class EvenementService {
             @Override
             public void actionPerformed(NetworkEvent evt) {
                 EvenementService ser = new EvenementService();
-                listTasks = ser.getEvenement(new String(con.getResponseData()));
+                listEvenement = ser.getEvenement(new String(con.getResponseData()));
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-        return listTasks;
+        return listEvenement;
     }
 }
