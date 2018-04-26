@@ -25,8 +25,8 @@ public class HomeForm {
     public HomeForm() {
         f = new Form("home");
        
-        btnajout = new Button("ajouter");
-        btnaff=new Button("Affichage");
+        btnajout = new Button("ajouterEvenet");
+        btnaff=new Button("AffichageEvent");
        
         f.add(btnajout);
         f.add(btnaff);
