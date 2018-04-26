@@ -5,8 +5,7 @@
  */
 package Entity;
 
-import java.sql.Time;
-import java.util.Date;
+
 
 /**
  *
@@ -17,7 +16,7 @@ public class Evenement {
     private int id_evenement;
     private String nom;
     private String descriptionn;
-    private Date date;
+    private String date;
     private String type;
     private int nbr_participation;
     private boolean etat;
@@ -25,9 +24,9 @@ public class Evenement {
     private String photo ;
     private Double latitude ;
     private Double longitude ;
-    private Time  temp ;
+    private String  temp ;
 
-    public Evenement(int id_evenement, String nom, String descriptionn, Date date, String type, int nbr_participation, boolean etat, int id_user, String photo, Double latitude, Double longitude,Time temp) {
+    public Evenement(int id_evenement, String nom, String descriptionn, String date, String type, int nbr_participation, boolean etat, int id_user, String photo, Double latitude, Double longitude,String temp) {
         this.id_evenement = id_evenement;
         this.nom = nom;
         this.descriptionn = descriptionn;
@@ -42,7 +41,13 @@ public class Evenement {
         this.temp = temp ;
     }
 
-    public Evenement(String nom, String descriptionn, Date date, String type, int nbr_participation, boolean etat, int id_user, String photo, Double latitude, Double longitude,Time temp) {
+    public Evenement(int id_evenement, String nom, String descriptionn) {
+        this.id_evenement = id_evenement;
+        this.nom = nom;
+        this.descriptionn = descriptionn;
+    }
+
+    public Evenement(String nom, String descriptionn, String date, String type, int nbr_participation, boolean etat, int id_user, String photo, Double latitude, Double longitude,String temp) {
         this.nom = nom;
         this.descriptionn = descriptionn;
         this.date = date;
@@ -60,13 +65,7 @@ public class Evenement {
     public Evenement() {
     }
 
-    public Time getTemp() {
-        return temp;
-    }
 
-    public void setTemp(Time temp) {
-        this.temp = temp;
-    }
 
     public int getId_evenement() {
         return id_evenement;
@@ -101,13 +100,7 @@ public class Evenement {
         this.descriptionn = descriptionn;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  
 
     public String getType() {
         return type;
