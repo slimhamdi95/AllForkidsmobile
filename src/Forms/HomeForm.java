@@ -20,20 +20,25 @@ public class HomeForm {
 
     Form f;
    
-    Button btnajout,btnaff;
+    Button btnajout,btnaff,btnajoutcov,btnaffcov;
 
     public HomeForm() {
         f = new Form("home");
        
         btnajout = new Button("ajouterEvenet");
         btnaff=new Button("AffichageEvent");
+        
+        btnajoutcov = new Button("ajouterCovoiturage");
+        btnaffcov=new Button("Affichagecovoiturage");
        
         f.add(btnajout);
         f.add(btnaff);
+        
+        f.add(btnajoutcov);
+        f.add(btnaffcov);
+        
         btnajout.addActionListener((e) -> {
            
-            
-
         });
         btnaff.addActionListener((e)->{
         AffichageEvenement a=new AffichageEvenement();
