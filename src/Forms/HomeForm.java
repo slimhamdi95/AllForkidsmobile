@@ -20,13 +20,16 @@ public class HomeForm {
 
     Form f;
    
-    Button btnajout,btnaff,btnajoutcov,btnaffcov;
+    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab;
 
     public HomeForm() {
         f = new Form("home");
        
         btnajout = new Button("ajouterEvenet");
         btnaff=new Button("AffichageEvent");
+        
+        btnajoutetab = new Button("ajouterEtab");
+        btnaffetab=new Button("AffichageEtab");
         
         btnajoutcov = new Button("ajouterCovoiturage");
         btnaffcov=new Button("Affichagecovoiturage");
@@ -36,6 +39,20 @@ public class HomeForm {
         
         f.add(btnajoutcov);
         f.add(btnaffcov);
+        
+        f.add(btnajoutetab);
+        f.add(btnaffetab);
+        
+        
+        btnajoutetab.addActionListener((e) -> {
+           
+        });
+        
+        btnaffetab.addActionListener((e)->{
+        AffichageEtablissement a=new AffichageEtablissement();
+        a.getForm().show();
+        });
+        
         
         btnajout.addActionListener((e) -> {
            
