@@ -18,11 +18,8 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.plaf.UIManager;
-<<<<<<< HEAD
 import com.codename1.ui.util.Resources;  
-=======
 import com.codename1.ui.util.Resources;
->>>>>>> 8c2bf337c6652a86968e2f268a65a331efd45809
 
 /**
  *
