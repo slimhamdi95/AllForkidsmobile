@@ -10,6 +10,7 @@ package Entity;
  * @author casa-net
  */
 public class User {
+<<<<<<< HEAD
     private int id;
     private String username;
     private String email;
@@ -42,6 +43,31 @@ public class User {
         this.date = date;
         this.picture = picture;
         this.password = password;
+=======
+    private    int id;
+      private    String userName;
+      private    String email;
+      private    String password;
+      private    int enabled;
+      private    String roles;
+      private    String nom;
+      private    String prenom;
+      private String photo;
+
+    public User() {
+    }
+
+    public User(int id, String userName, String email, String password, int enabled, String roles, String nom, String prenom, String photo) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.photo = photo;
+>>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
     }
 
     public int getId() {
@@ -52,12 +78,21 @@ public class User {
         this.id = id;
     }
 
+<<<<<<< HEAD
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+=======
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+>>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
     }
 
     public String getEmail() {
@@ -68,6 +103,7 @@ public class User {
         this.email = email;
     }
 
+<<<<<<< HEAD
     public String getEnabled() {
         return enabled;
     }
@@ -82,6 +118,22 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt;
+=======
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+>>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
     }
 
     public String getRoles() {
@@ -92,6 +144,7 @@ public class User {
         this.roles = roles;
     }
 
+<<<<<<< HEAD
     public String getCin() {
         return cin;
     }
@@ -100,6 +153,8 @@ public class User {
         this.cin = cin;
     }
 
+=======
+>>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
     public String getNom() {
         return nom;
     }
@@ -116,6 +171,7 @@ public class User {
         this.prenom = prenom;
     }
 
+<<<<<<< HEAD
     public String getDate() {
         return date;
     }
@@ -138,10 +194,19 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+=======
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+>>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
     }
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "User{" + "username=" + username + ", email=" + email + ", enabled=" + enabled + ", salt=" + salt + ", roles=" + roles + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", date=" + date + ", picture=" + picture + ", password=" + password + '}';
     }
 
@@ -149,4 +214,10 @@ public class User {
     }
 
     
+=======
+        return "User{" + "id=" + id + ", userName=" + userName + ", email=" + email + ", password=" + password + ", enabled=" + enabled + ", roles=" + roles + ", nom=" + nom + ", prenom=" + prenom + ", photo=" + photo + '}';
+    }
+      
+      
+>>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
 }

@@ -110,6 +110,10 @@ public class Transport {
         this.id_user = id_user;
     }
 
+    public Transport() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void setId_user(int id_user) {
         this.id_user = id_user;
     }

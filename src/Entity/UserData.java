@@ -13,5 +13,9 @@ public interface UserData {
     public String getName();
     public String getId();
     public String getImage();
+<<<<<<< HEAD
     public void fetchData(String token, Runnable callback); 
+=======
+    public void fetchData(String token, Runnable callback);
+>>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
 }
