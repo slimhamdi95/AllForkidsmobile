@@ -53,6 +53,7 @@ public class AffichageEvenement {
  
             MultiButton mb = new MultiButton(e.getNom());
             mb.setTextLine2(e.getDescriptionn());
+<<<<<<< HEAD
            
             theme = UIManager.initFirstTheme("/theme");
             enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
@@ -64,7 +65,22 @@ public class AffichageEvenement {
            
             a.getF().show();
         });
+=======
+           Image i ;
+
+          // i.se
+          // mb.setIcon("C:\wamp64\www\Allforkids\web//\//uploads\images"+e.getPhoto());
+           // f1.add(mb);
+          // i.se
+          // mb.setIcon("C:\wamp64\www\Allforkids\web//\//uploads\images"+e.getPhoto());
+           // f1.add(mb);
+
+           /*
+           i.se
+           mb.setIcon("C:\wamp64\www\Allforkids\web\ uploads\images"+e.getPhoto());
+>>>>>>> 5c2bde63a515a014271739d1b14e250a68a76696
             f1.add(mb);
+            */
         }
 
         f.getToolbar().addCommandToRightBar("back", null, (ev) -> {
