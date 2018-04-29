@@ -22,7 +22,7 @@ public class HomeForm {
     Form f;
    
 
-    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin;
+    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin;
 
     Button btntof;
 
@@ -37,18 +37,19 @@ public class HomeForm {
         btnaff=new Button("Affichage");
         btnajout = new Button("ajouterEvenet");
         btnaff=new Button("AffichageEvent");
-        
+       
         btnajoutetab = new Button("ajouterEtab");
         btnaffetab=new Button("AffichageEtab");
         
         btnajoutcov = new Button("ajouterCovoiturage");
         btnaffcov=new Button("Affichagecovoiturage");
         btnlogin=new Button("Login");
-       
+        btnsingin=new Button("SingIn");
         f.add(btnajout);
         f.add(btntof);
         f.add(btnaff);
         f.add(btnlogin);
+        f.add(btnsingin);
 
          btntof.addActionListener((e) -> {
            
@@ -87,6 +88,11 @@ public class HomeForm {
         AffichageEvenement a=new AffichageEvenement();
         a.getF().show();
         });
+        btnsingin.addActionListener((e) -> {
+            Inscrit i = new Inscrit();
+            i.getF().show();
+        });
+        
     }
 
     public Form getF() {
