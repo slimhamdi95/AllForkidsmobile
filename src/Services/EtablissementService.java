@@ -63,7 +63,8 @@ public class EtablissementService {
                 e.setId_etablissement((int) idEtablissement);
                
                 e.setNom(obj.get("nom").toString());
-                e.setDescription(obj.get("descriptionn").toString());
+                e.setDescription(obj.get("description").toString());
+                e.setImage(obj.get("image").toString());;
                 System.out.println(e);
                 listEtab.add(e);
 
@@ -80,7 +81,7 @@ public class EtablissementService {
 
     public ArrayList<Etablissement> getList2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://http://localhost/Allforkids/web/app_dev.php/Etab/all1");
+        con.setUrl("http://localhost/Allforkids/web/app_dev.php/Etab/all1");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
