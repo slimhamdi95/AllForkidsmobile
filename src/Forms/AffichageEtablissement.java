@@ -18,6 +18,7 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.plaf.UIManager;
+import com.codename1.ui.util.Resources;  
 import com.codename1.ui.util.Resources;
 
 /**

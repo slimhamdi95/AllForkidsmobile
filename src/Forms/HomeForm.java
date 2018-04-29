@@ -11,6 +11,8 @@ import com.codename1.capture.Capture;
 import com.codename1.ui.Button;
 import com.codename1.ui.Form;
 import com.codename1.ui.TextField;
+import java.io.IOException;
+
 
 
 /**
@@ -85,7 +87,12 @@ public class HomeForm {
                   a.getF().show();
         });
         btnaff.addActionListener((e)->{
-        AffichageEvenement a=new AffichageEvenement();
+        AffichageEvenement a = null ;
+            try {
+                a = new AffichageEvenement();
+            } catch (IOException ex) {
+                System.out.println("exception");
+            }
         a.getF().show();
         });
         btnsingin.addActionListener((e) -> {
