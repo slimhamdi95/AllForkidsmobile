@@ -30,7 +30,7 @@ public class TransportService {
             List<Map<String, Object>> list = (List<Map<String, Object>>) events.get("root");
             
             for (Map<String, Object> obj : list) {
-<<<<<<< HEAD
+
                 /*Transport t = new Transport();
 
 =======
@@ -46,8 +46,7 @@ public class TransportService {
                 listTransport.add(t);
 <<<<<<< HEAD
 */
-=======
->>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
+
             }
             
             } catch (IOException ex) {
