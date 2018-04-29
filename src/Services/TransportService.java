@@ -31,9 +31,13 @@ public class TransportService {
             
             for (Map<String, Object> obj : list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 8c2bf337c6652a86968e2f268a65a331efd45809
+=======
+
+>>>>>>> 048c7bfbc5063b6db3c9ab2718c95cd6b2144929
                 /*Transport t = new Transport();
 
 =======
@@ -49,12 +53,16 @@ public class TransportService {
                 listTransport.add(t);
 <<<<<<< HEAD
 */
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 */
 =======
 >>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
 >>>>>>> 8c2bf337c6652a86968e2f268a65a331efd45809
+=======
+
+>>>>>>> 048c7bfbc5063b6db3c9ab2718c95cd6b2144929
             }
             
             } catch (IOException ex) {

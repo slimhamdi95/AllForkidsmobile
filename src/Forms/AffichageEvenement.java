@@ -43,23 +43,30 @@ public class AffichageEvenement {
             MultiButton mb = new MultiButton(e.getNom());
             mb.setTextLine2(e.getDescriptionn());
            Image i ;
-<<<<<<< HEAD
+
           // i.se
           // mb.setIcon("C:\wamp64\www\Allforkids\web//\//uploads\images"+e.getPhoto());
            // f1.add(mb);
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
           // i.se
           // mb.setIcon("C:\wamp64\www\Allforkids\web//\//uploads\images"+e.getPhoto());
            // f1.add(mb);
 =======
+=======
+
+>>>>>>> 048c7bfbc5063b6db3c9ab2718c95cd6b2144929
            /*
            i.se
            mb.setIcon("C:\wamp64\www\Allforkids\web\ uploads\images"+e.getPhoto());
             f1.add(mb);
             */
+<<<<<<< HEAD
 >>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
 >>>>>>> 8c2bf337c6652a86968e2f268a65a331efd45809
+=======
+>>>>>>> 048c7bfbc5063b6db3c9ab2718c95cd6b2144929
         }
        
        

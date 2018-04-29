@@ -21,24 +21,20 @@ public class HomeForm {
 
     Form f;
    
-<<<<<<< HEAD
+
     Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin;
-=======
-<<<<<<< HEAD
-    Button btnajout,btnaff,btntof;
-=======
-    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab;
->>>>>>> f8c88962dc24f77a257418d6f85f6429045072a6
->>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
+
+    Button btntof;
+
+   // Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab;
+
 
     public HomeForm() {
         f = new Form("home");
        
-<<<<<<< HEAD
         btnajout = new Button("ajouter");
         btntof = new Button("photo");
         btnaff=new Button("Affichage");
-=======
         btnajout = new Button("ajouterEvenet");
         btnaff=new Button("AffichageEvent");
         
@@ -47,27 +43,20 @@ public class HomeForm {
         
         btnajoutcov = new Button("ajouterCovoiturage");
         btnaffcov=new Button("Affichagecovoiturage");
-<<<<<<< HEAD
         btnlogin=new Button("Login");
-=======
->>>>>>> f8c88962dc24f77a257418d6f85f6429045072a6
        
->>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
         f.add(btnajout);
         f.add(btntof);
         f.add(btnaff);
-<<<<<<< HEAD
         f.add(btnlogin);
-=======
-        
-<<<<<<< HEAD
+
          btntof.addActionListener((e) -> {
            
-            Authenticfication b = new Authenticfication();
-           b.getF1().show();
+            
+            
+          
 
-=======
->>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
+           });
         f.add(btnajoutcov);
         f.add(btnaffcov);
         
@@ -82,7 +71,6 @@ public class HomeForm {
         btnaffetab.addActionListener((e)->{
         AffichageEtablissement a=new AffichageEtablissement();
         a.getForm().show();
->>>>>>> f8c88962dc24f77a257418d6f85f6429045072a6
         });
         
         
