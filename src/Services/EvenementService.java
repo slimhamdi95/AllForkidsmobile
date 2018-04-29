@@ -125,7 +125,7 @@ public class EvenementService {
     }
     ////oumou zebi lena  ///////
      public Evenement getEvenement2(String json) {
-      Evenement e = new Evenement();
+      Evenement e = new Evenement(); 
 
         try {
             System.out.println(json);
