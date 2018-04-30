@@ -8,11 +8,19 @@ package Forms;
 import Entity.BCrypt;
 import Entity.User;
 import Services.LoginService;
+import com.codename1.components.InfiniteProgress;
+import com.codename1.io.MultipartRequest;
+import com.codename1.io.NetworkManager;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
+import java.io.IOException;
 
 /**
  *
@@ -20,10 +28,11 @@ import com.codename1.ui.TextField;
  */
 public class Inscrit {
      Form f;
-    Label Username1, nom1 , prenom1 , role1 ,email1 , cin1 , password1,pic1;
   
+  
+String fichernom;
 
-    TextField Username, nom , prenom , role ,email , cin , password,passwordVerif;
+    TextField date,Username, nom , prenom , role ,email , cin , password,passwordVerif;
     
     Button valider , vider ,pic;
    
@@ -46,7 +55,7 @@ public class Inscrit {
              pic = new Button("photo");
              password =new TextField("","password"); 
              passwordVerif =new TextField("","password Verif"); 
-             
+             date =new TextField("","date de ne");
            
         
         
@@ -54,7 +63,34 @@ public class Inscrit {
         vider = new Button("vider");
         
        // pass = new Password();
-      
+       pic.addActionListener((ActionEvent e) -> {
+            Display.getInstance().openImageGallery(new ActionListener() {
+                public void actionPerformed(ActionEvent ev) {
+                    if (ev != null && ev.getSource() != null) {
+                        String filePath = (String) ev.getSource();
+                        f.add(filePath);
+                        try {
+
+                            MultipartRequest cr = new MultipartRequest();
+                            cr.setUrl("http://localhost/allforkids/web/imageUpload.php");
+                            cr.setPost(true);
+                            String mime = "image/png";
+                            cr.addData("file", filePath, mime);
+                            fichernom = System.currentTimeMillis() + ".png";
+                            cr.setFilename("file", fichernom);
+
+                            InfiniteProgress prog = new InfiniteProgress();
+                            Dialog dlg = prog.showInifiniteBlocking();
+                            cr.setDisposeOnCompletion(dlg);
+                            NetworkManager.getInstance().addToQueueAndWait(cr);
+                        } catch (IOException ex) {
+                        }
+
+                    }
+                }
+            });
+
+        });
        // f.add(Username1);
          f.add(Username);
           f.add(nom);
@@ -69,7 +105,9 @@ public class Inscrit {
         f.add(password);
         f.add(passwordVerif); 
        // f.add(password1);
+       f.add(date);
      f.add(vider);
+      
         //f.add(pic1);
 
        
