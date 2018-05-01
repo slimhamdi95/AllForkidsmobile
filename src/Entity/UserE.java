@@ -9,7 +9,7 @@ package Entity;
  *
  * @author casa-net
  */
-public class User {
+public class UserE {
 
     private int id;
     private String username;
@@ -24,10 +24,10 @@ public class User {
     private String  picture;
     private String  password;
 
-    public User() {
+    public UserE() {
     }
 
-    public User(int id, String username, String email, String enabled, String salt, String roles, String cin, String nom, String prenom, String date, String picture, String password) {
+    public UserE(int id, String username, String email, String enabled, String salt, String roles, String cin, String nom, String prenom, String date, String picture, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -42,7 +42,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String username, String password) {
+    public UserE(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -147,6 +147,19 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", email=" + email + ", enabled=" + enabled + ", salt=" + salt + ", roles=" + roles + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", date=" + date + ", picture=" + picture + ", password=" + password + '}';
+    }
+
+    public UserE(int id, String username, String email, String roles, String cin, String nom, String prenom, String date, String picture, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.roles = roles;
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.date = date;
+        this.picture = picture;
+        this.password = password;
     }
 
     

@@ -6,7 +6,8 @@
 package Forms;
 
 import Entity.BCrypt;
-import Entity.User;
+import Entity.Session;
+import Entity.UserE;
 import Services.EvenementService;
 import Services.LoginService;
 import com.codename1.components.MultiButton;
@@ -29,7 +30,7 @@ public class Login {
     Label nom ;
     Container f1 ;
     TextField login,pass;
-    Button valider ;
+    Button valider , facebook ;
   //  Password pass ;
     
      public Login() {
@@ -41,6 +42,7 @@ public class Login {
         login = new TextField("");
         pass =new TextField("");
         valider = new Button("valider");
+          facebook = new Button("facebook");
        // pass = new Password();
        f.add(lb);
         f.add(login);
@@ -48,19 +50,30 @@ public class Login {
 
         f.add(pass);
         f.add(valider);
-        
+        f.add(facebook);
        valider.addActionListener((e) -> {
            LoginService s = new LoginService();
            
-           User u = new User();
+           UserE u = new UserE();
            u.setUsername(s.showDetail(login.getText()).getUsername());
            u.setPassword(s.showDetail(login.getText()).getPassword());
+           u.setId(s.showDetail(login.getText()).getId());
                       if (BCrypt.checkpw(pass.getText(),u.getPassword())) {
-                       HomeForm h = new HomeForm();
-                       h.getF().show();
+                          Session.setId(s.showDetail(login.getText()).getId());
+                          System.out.println("ghvgjj"+u.getId());
+                          Session.setUsername(s.showDetail(login.getText()).getUsername());
+                      ModifierUser m =new ModifierUser();
+                       m.getF().show();
                       }
 
            System.out.println(u.toString());
+        });
+       
+       facebook.addActionListener((e) -> {
+           LoginService s = new LoginService();
+        
+           UserE u = new UserE();
+          s.loginFacebook(f);
         });
      
        

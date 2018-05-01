@@ -5,18 +5,16 @@
  */
 package Forms;
 
-import Entity.BCrypt;
+import Entity.Session;
 import Entity.UserE;
 import Services.LoginService;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.MultipartRequest;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.Button;
-import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
-import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -28,8 +26,8 @@ import java.io.IOException;
  *
  * @author casa-net
  */
-public class Inscrit {
-     Form f;
+public class ModifierUser {
+         Form f;
   
   Picker stringPicker;
 String fichernom;
@@ -38,35 +36,39 @@ String fichernom;
     
     Button valider , vider ,pic;
    
-     public Inscrit() {
+     public ModifierUser() {
         
-        f = new Form("Iscription", BoxLayout.y());
-        
-        
+        f = new Form("Modifier Profil", BoxLayout.y());
         
         
         
+        
+        LoginService ls = new LoginService();
         
       
-        Username =new TextField("","Username");
-        nom=new TextField("","nom");
-         prenom =new TextField("","prenom");
-          role =new TextField("","role");
-           email =new TextField("","email");
-            cin =new TextField("","cin");
-             pic = new Button("photo");
-             password =new TextField("","password"); 
-             passwordVerif =new TextField("","password Verif"); 
+        Username =new TextField(ls.showDetail(Session.getUsername()).getUsername(),"username");
+        nom=new TextField(ls.showDetail(Session.getUsername()).getNom());
+         prenom =new TextField(ls.showDetail(Session.getUsername()).getPrenom());
+          role =new TextField(ls.showDetail(Session.getUsername()).getRoles());
+           email =new TextField(ls.showDetail(Session.getUsername()).getEmail());
+            cin =new TextField(ls.showDetail(Session.getUsername()).getCin());
+             pic = new Button(ls.showDetail(Session.getUsername()).getPicture());
+            
              
-        
-        stringPicker = new Picker();
-        stringPicker.setType(Display.PICKER_TYPE_STRINGS);
-        stringPicker.setStrings("Parent", "Enfant", "Docter","Respensable");
-        stringPicker.setSelectedString("Parent");
+             
+      /*  valider.addActionListener((e) -> {
+           LoginService s = new LoginService();
+           
+           UserE u = new UserE(0,Username.getText(),email.getText(),stringPicker.getText(),cin.getText(),nom.getText(),prenom.getText(),date.getText(),pic.getText(),password.getText());
+           s.Inscrit(u);
+                    
+        });*/
+       
 
         
-        valider = new Button("valider");
+        valider = new Button("Modifier");
         vider = new Button("vider");
+        pic = new Button("pic");
         
        // pass = new Password();
        pic.addActionListener((ActionEvent e) -> {
@@ -97,23 +99,19 @@ String fichernom;
             });
 
         });
-       // f.add(Username1);
-         f.add(Username);
+       f.add(Username);
+        
           f.add(nom);
          //  f.add(nom1);
             f.add(prenom);
           //   f.add(prenom1);
               f.add(email);
-              f.add(stringPicker);
+            
            f.add(pic);
                f.add(cin);
       //  f.add(cin1);
       
-        f.add(password);
-        f.add(passwordVerif); 
-       // f.add(password1);
-     
-     f.add(vider);
+        
       
         //f.add(pic1);
 

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/AffichageEtablissement.java</file>
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Services/VilleService.java</file>
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Services/EtablissementService.java</file>
@@ -11,6 +12,12 @@
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Services/RegionService.java</file>
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Entity/Ville.java</file>
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Entity/Region.java</file>
+=======
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Services/LoginService.java</file>
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/Login.java</file>
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/Inscrit.java</file>
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/HomeForm.java</file>
+>>>>>>> acb68f48c8aa5250f209c74d05c7e0f32d286736
         </group>
     </open-files>
 </project-private>
