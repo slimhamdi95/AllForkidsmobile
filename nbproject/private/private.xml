@@ -3,28 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/AffichageEtablissement.java</file>
-            <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Services/EtablissementService.java</file>
-            <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/HomeForm.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/AffichageEtablissement.java</file>
-            <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Services/EtablissementService.java</file>
-            <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/HomeForm.java</file>
-=======
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Services/TransportService.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Entity/Transport.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/HomeForm.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/AffichageEvenement.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Services/EvenementService.java</file>
->>>>>>> a4ec22ca8015f371fc0f3b7a468f970ee862791e
->>>>>>> 8c2bf337c6652a86968e2f268a65a331efd45809
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Services/LoginService.java</file>
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/Login.java</file>
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/Inscrit.java</file>
+            <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/HomeForm.java</file>
         </group>
->>>>>>> 5c2bde63a515a014271739d1b14e250a68a76696
     </open-files>
 </project-private>

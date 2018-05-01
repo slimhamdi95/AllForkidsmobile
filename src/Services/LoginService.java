@@ -5,10 +5,11 @@
  */
 package Services;
 
-import Entity.User;
+import Entity.UserE;
 import Forms.Login;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.facebook.FaceBookAccess;
+import com.codename1.facebook.User;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -27,15 +28,15 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import java.io.IOException;
 import java.util.Map;
-//import com.codename1.facebook.User;
+
 
 /**
  *
  * @author casa-net
  */
 public class LoginService  {
-     public User showDetail(String userName){
-        User e = new User();
+     public UserE showDetail(String userName){
+        UserE e = new UserE();
       ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/allforkids/web/app_dev.php/ent/by/"+userName);
          con.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -43,8 +44,13 @@ public class LoginService  {
             public void actionPerformed(NetworkEvent evt) {
                 LoginService ser = new LoginService();
                  e.setId(ser.getUser4(new String(con.getResponseData())).getId());
+                  e.setCin(ser.getUser4(new String(con.getResponseData())).getCin());
+                   e.setNom(ser.getUser4(new String(con.getResponseData())).getNom());
+                    e.setPrenom(ser.getUser4(new String(con.getResponseData())).getPrenom());
                  e.setUsername( ser.getUser4(new String(con.getResponseData())).getUsername());
                  e.setPassword(ser.getUser4(new String(con.getResponseData())).getPassword());
+              
+                
                 
             }
         });
@@ -55,8 +61,8 @@ public class LoginService  {
     }
      
      
-      public User getUser4(String json) {
-      User e = new User();
+      public UserE getUser4(String json) {
+      UserE e = new UserE();
 
         try {
             System.out.println(json);
@@ -70,6 +76,10 @@ public class LoginService  {
                 e.setId((int) id);
                
                 e.setUsername(events.get("username").toString());
+                e.setPicture(events.get("picture").toString());
+                  e.setPrenom(events.get("prenom").toString());
+                   e.setNom(events.get("nom").toString());
+                   e.setCin(events.get("cin").toString());
                 e.setPassword(events.get("password").toString());
               
                  
@@ -82,7 +92,7 @@ public class LoginService  {
       
       
       
-      public void Inscrit(User user) {
+      public void Inscrit(UserE user) {
       // Calendar s = new Calendar();
        ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/allforkids/web/app_dev.php/ent/Inscrit/"
@@ -101,8 +111,8 @@ public class LoginService  {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
-      private void showIfNotLoggedIn(Form form){
-      /* String token = (String) Storage.getInstance().readObject("token");
+      private void showIfNotLoggedIn(Form form) throws IOException{
+       String token = (String) Storage.getInstance().readObject("token");
         FaceBookAccess.setToken(token);
             final User me = new User();
             FaceBookAccess.getInstance().getUser("me",me , new ActionListener() {
@@ -117,7 +127,11 @@ public class LoginService  {
                     Button buttonLogout = new Button("Logout");
                     buttonLogout.addActionListener((e) -> {
                         
-                        showIfNotLoggedIn(form);
+                        try {
+                            showIfNotLoggedIn(form);
+                        } catch (IOException ex) {
+                            System.out.println("errr1");
+                        }
                     });
                     
                     EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(50, 50, 0xffff0000), true);
@@ -131,7 +145,7 @@ public class LoginService  {
                     form.add(buttonLogout);
                     
                     form.revalidate();
-                    //form.show();
+                    form.show();
                 }
                 
                
@@ -156,7 +170,10 @@ public class LoginService  {
                         System.out.println("errr");
                                              Storage.getInstance().writeObject("token", "");
 
-                             showIfNotLoggedIn(form);
+                        try {
+                            showIfNotLoggedIn(form);
+                        } catch (IOException ex) {
+                            System.out.println("errr2");                        }
                              
                     }
 
@@ -165,7 +182,10 @@ public class LoginService  {
                           String  token = fb.getAccessToken().getToken();
                         Storage.getInstance().writeObject("token", token);
                            System.out.println("succes");                       
-                           showIfNotLoggedIn(form);
+                        try {
+                            showIfNotLoggedIn(form);
+                        } catch (IOException ex) {
+                            System.out.println("eerrr3");                        }
 
                     }
 
@@ -181,7 +201,11 @@ public class LoginService  {
                     //get the token and now you can query the facebook API
                     String token = fb.getAccessToken().getToken();
                     Storage.getInstance().writeObject("token", token);
-                     showIfNotLoggedIn(form);
-                }*/
+                    try {
+                        showIfNotLoggedIn(form);
+                    } catch (IOException ex) {
+                        System.out.println("err4");
+                    }
+                }
        }  
 }

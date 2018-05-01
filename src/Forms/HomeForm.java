@@ -8,7 +8,9 @@ package Forms;
 import Entity.Evenement;
 import Services.EvenementService;
 import com.codename1.capture.Capture;
+import com.codename1.messaging.Message;
 import com.codename1.ui.Button;
+import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.TextField;
 import java.io.IOException;
@@ -24,9 +26,9 @@ public class HomeForm {
     Form f;
    
 
-    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin;
+    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser;
 
-    Button btntof;
+    Button btntof,mail;
 
    // Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab;
 
@@ -47,19 +49,32 @@ public class HomeForm {
         btnaffcov=new Button("Affichagecovoiturage");
         btnlogin=new Button("Login");
         btnsingin=new Button("SingIn");
+        mail=new Button("mail");
+        modifierUser=new Button("modifierUser");
         f.add(btnajout);
         f.add(btntof);
         f.add(btnaff);
         f.add(btnlogin);
         f.add(btnsingin);
+f.add(mail);
+f.add(modifierUser);
+         mail.addActionListener((e) -> {
+         
 
-         btntof.addActionListener((e) -> {
-           
-            
-            
-          
+               Message m = new Message("<html><body>Check out <a href=\"https://www.codenameone.com/\">Codename One</a></body></html>");
+             m.setMimeType(Message.MIME_HTML);
+Display.getInstance().sendMessage(new String[] {"salemen.fatnassi@gmail.com"}, "Subject of message", m);
 
-           });
+// notice that we provide a plain text alternative as well in the send method
+
+        });
+         
+          modifierUser.addActionListener((e) -> {
+         
+ModifierUser i = new ModifierUser();
+            i.getF().show();
+
+        });
         f.add(btnajoutcov);
         f.add(btnaffcov);
         
