@@ -111,11 +111,7 @@ public class Transport {
     }
 
     public Transport() {
-<<<<<<< HEAD
-        
-=======
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
->>>>>>> 54569402523c27ed9e08ddd030917251b04c08f5
+
     }
 
     public void setId_user(int id_user) {
