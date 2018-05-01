@@ -67,7 +67,8 @@ public class HomeForm {
         
         
         btnajoutetab.addActionListener((e) -> {
-           
+           AjouterEtablissement se= new AjouterEtablissement();
+           se.getF().show();
         });
         
         btnaffetab.addActionListener((e)->{

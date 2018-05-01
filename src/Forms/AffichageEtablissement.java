@@ -16,7 +16,9 @@ import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;  
 import com.codename1.ui.util.Resources;
@@ -37,7 +39,7 @@ public class AffichageEtablissement {
     public AffichageEtablissement() {
         
         form = new Form();
-        f1 = new Container();
+        f1 = new Container(BoxLayout.y());
         lb = new SpanLabel("");
         nom = new Label("");
         
@@ -52,15 +54,24 @@ public class AffichageEtablissement {
            nom.setText(e.getNom());  
            
             MultiButton mb = new MultiButton(e.getNom());
-            mb.setTextLine2(e.getDescription());
+            mb.setTextLine2(e.getType());
+           
             
             theme = UIManager.initFirstTheme("/theme");
             enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
             Image i = URLImage.createToStorage(enc,e.getNom(), "http://localhost/allforkids/web/uploads/images/" + e.getImage(), URLImage.RESIZE_SCALE);
             
-            form.add(new Label(e.getNom()));
-            form.add(new Label(e.getDescription()));
-            form.add(i);
+            mb.setIcon(i);
+            
+            mb.addActionListener((al)->{
+            DetailEtablissement a = new DetailEtablissement(e.getId_etablissement());
+           
+            a.getF().show();
+        });
+            
+            
+            form.add(mb);
+            
          
         }
        

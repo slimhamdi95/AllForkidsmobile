@@ -19,7 +19,7 @@ public class Etablissement {
     private String ville;
     private String description;
     private String image;
-    private String verification;
+    private String verification="Non valide";
 
     public Etablissement() {
     }
