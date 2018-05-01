@@ -12,9 +12,16 @@ import Services.EvenementService;
 import com.codename1.components.MultiButton;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Container;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
+import com.codename1.ui.URLImage;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.plaf.UIManager;
+import com.codename1.ui.util.Resources;  
+import com.codename1.ui.util.Resources;
 
 /**
  *
@@ -26,13 +33,17 @@ public class AffichageEtablissement {
     SpanLabel lb;
     Label nom ;
     Container f1 ;
+    private Resources theme;
+    EncodedImage enc;
    
     public AffichageEtablissement() {
         
         form = new Form();
-        f1 = new Container();
+        f1 = new Container(BoxLayout.y());
         lb = new SpanLabel("");
         nom = new Label("");
+        
+        
         
         form.add(lb);
         form.add(f1);
@@ -43,11 +54,25 @@ public class AffichageEtablissement {
            nom.setText(e.getNom());  
            
             MultiButton mb = new MultiButton(e.getNom());
-            mb.setTextLine2(e.getDescription());
-          // Image i ;
-          /* i.se
-           mb.setIcon("C:\wamp64\www\Allforkids\web/*\*//*uploads\images"+e.getPhoto());
-            f1.add(mb);*/
+            mb.setTextLine2(e.getType());
+           
+            
+            theme = UIManager.initFirstTheme("/theme");
+            enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+            Image i = URLImage.createToStorage(enc,e.getNom(), "http://localhost/allforkids/web/uploads/images/" + e.getImage(), URLImage.RESIZE_SCALE);
+            
+            mb.setIcon(i);
+            
+            mb.addActionListener((al)->{
+            DetailEtablissement a = new DetailEtablissement(e.getId_etablissement());
+           
+            a.getF().show();
+        });
+            
+            
+            form.add(mb);
+            
+         
         }
        
        

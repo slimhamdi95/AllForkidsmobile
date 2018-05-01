@@ -19,7 +19,7 @@ public class Etablissement {
     private String ville;
     private String description;
     private String image;
-    private String verification;
+    private String verification="Non valide";
 
     public Etablissement() {
     }
@@ -44,6 +44,13 @@ public class Etablissement {
         this.description = description;
         this.image = image;
         this.verification = verification;
+    }
+    public Etablissement(String nom, String type, String region, String ville, String description) {
+        this.nom = nom;
+        this.type = type;
+        this.region = region;
+        this.ville = ville;
+        this.description = description;
     }
 
     public int getId_etablissement() {

@@ -35,6 +35,8 @@ public class TransportService {
             List<Map<String, Object>> list = (List<Map<String, Object>>) transports.get("root");
             
             for (Map<String, Object> obj : list) {
+                /*Transport t = new Transport();
+
                 Transport t = new Transport();
                 // System.out.println(obj.get("id"));
                 float idTransport = Float.parseFloat(obj.get("idTransport").toString());
@@ -44,8 +46,8 @@ public class TransportService {
                 t.setTelephone(obj.get("telephone").toString());
                 System.out.println(t);
                 listTransport.add(t);
+*/
             }
-            
             } catch (IOException ex) {
         }
         System.out.println(listTransport);
