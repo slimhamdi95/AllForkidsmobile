@@ -58,6 +58,32 @@ public class TransportService {
         return listTransport;
 
     }
+    
+        public Transport getTransportEntity(String json) {
+            Transport transport = new Transport();
+            try {
+                JSONParser j = new JSONParser();
+                Map<String, Object> transports = j.parseJSON(new CharArrayReader(json.toCharArray()));
+                
+                float idTransport = Float.parseFloat(transports.get("idTransport").toString());
+                transport.setIdTransport((int) idTransport);
+                transport.setDepart(transports.get("depart").toString());
+                transport.setArrivé(transports.get("arrive").toString());
+                transport.setDescription((String) transports.get("description"));
+                transport.setTelephone(transports.get("telephone").toString());
+                transport.setPlace(transports.get("place").toString());
+                transport.setFrais(transports.get("frais").toString());
+                transport.setType(transports.get("type").toString());
+                transport.setArriveName(transports.get("arrivename").toString());
+                transport.setDepartName(transports.get("departname").toString());
+                
+                float idCreateur = Float.parseFloat(transports.get("idCreateur").toString());
+                transport.setId_user((int) idCreateur);
+                } catch (IOException ex) {
+            }
+        return transport;
+
+    }
         
     ArrayList<Transport> listTransport = new ArrayList<>();
         
@@ -75,21 +101,26 @@ public class TransportService {
         return listTransport;
     }
     
-    ArrayList<Transport> Transport = new ArrayList<>();
     
-    public ArrayList<Transport> getTransportDetails(int id){
+    public Transport getTransportDetails(int id){
+        Transport Transport = new Transport();
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/allforkids/web/app_dev.php/transport/find/"+id);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
                 TransportService service = new TransportService();
-                Transport = service.getTransport(new String(con.getResponseData()));
+                    Transport.setIdTransport(service.getTransportEntity(new String(con.getResponseData())).getIdTransport());
+                    Transport.setDepartName(service.getTransportEntity(new String(con.getResponseData())).getDepartName());
+                    Transport.setArriveName(service.getTransportEntity(new String(con.getResponseData())).getArriveName());
+                    Transport.setDescription(service.getTransportEntity(new String(con.getResponseData())).getDescription());
+                    Transport.setTelephone(service.getTransportEntity(new String(con.getResponseData())).getTelephone());
+                    Transport.setPlace(service.getTransportEntity(new String(con.getResponseData())).getPlace());
+                    Transport.setFrais(service.getTransportEntity(new String(con.getResponseData())).getFrais());
+                    Transport.setType(service.getTransportEntity(new String(con.getResponseData())).getType());
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-        return  Transport ; 
-        
+        return  Transport ;
     }
-    
 }

@@ -42,10 +42,12 @@ public class ShowTransport {
             MultiButton mb = new MultiButton(t.getDepartName());
             mb.setTextLine2(t.getArriveName());
             
+            
+            
             container.add(mb);
         }
         
-        form.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();
+        form.getToolbar().addCommandToRightBar("back", null,(ev)->{HomeForm h=new HomeForm();
           h.getF().show();
           });
 }
