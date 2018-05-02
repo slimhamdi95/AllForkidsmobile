@@ -129,6 +129,12 @@ ModifierUser i = new ModifierUser();
             }
         a.getForm().show();
         });
+        
+        btnajoutcov.addActionListener((e)->{
+        ajoutTransport a = null ;
+        a = new ajoutTransport();
+        a.getForm().show();
+        });
 
         btnsingin.addActionListener((e) -> {
             Inscrit i = new Inscrit();
