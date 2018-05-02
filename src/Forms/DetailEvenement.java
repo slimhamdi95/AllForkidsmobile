@@ -122,7 +122,7 @@ Coord crd = new Coord(evenement.getLatitude(), evenement.getLongitude());
         int nbr = evenement.getNbr_participation() - es.getNbparticipent(evenement.getId_evenement());
         f.add(new Label("" + nbr));
         f.add(root);
-        if (evenement.getId_user() == Session.getId()) {
+        if (evenement.getId_user() != 1 ) { //==Session.getId() fiiblaset !=1
             f.add(modif);
             f.add(sup);
         } else {
@@ -158,8 +158,30 @@ Coord crd = new Coord(evenement.getLatitude(), evenement.getLongitude());
         boolean df =  Dialog.show("Suppression","Vous les vous vraiment Annuler participation?","Oui","Non");
           if(df){
             es.anullEvenementParticipent(id, Session.getId());
+              DetailEvenement a = new DetailEvenement(id);
+          
+            a.getF().show();
           }
        });
+         sup.addActionListener((al)->{
+          
+        boolean df =  Dialog.show("Suppression","Vous les vous vraiment Supprimer L'evenement ?","Oui","Non");
+          if(df){
+            es.DeleteEvenement(id);
+                 AffichageEvenement a = null;
+                try {
+                    a = new AffichageEvenement();
+                } catch (IOException ex) {
+                    System.out.println("erreuur");
+                }
+                a.getF().show();
+          }
+       });
+            modif.addActionListener((al)->{
+             UpdateEvenement a = new UpdateEvenement(evenement);
+             a.getF().show();
+       });
+         
        
         f.getToolbar().addCommandToRightBar("back", null, (ev) -> {
             AffichageEvenement h = null;

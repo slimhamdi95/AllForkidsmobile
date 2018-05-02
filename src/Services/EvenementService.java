@@ -80,6 +80,20 @@ public class EvenementService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
+        public void DeleteEvenement(int id) {
+        // Calendar s = new Calendar();
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/allforkids/web/app_dev.php/divertissement/deletemobile/"+id;
+        con.setUrl(Url);
+
+        //System.out.println("tt");
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
     
     public ArrayList<Evenement> getEvenement(String json) {
         

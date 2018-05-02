@@ -6,6 +6,7 @@
 package Forms;
 
 import Entity.Evenement;
+import Entity.Session;
 import Services.EvenementService;
 import com.codename1.capture.Capture;
 import com.codename1.components.InfiniteProgress;
@@ -178,7 +179,7 @@ public class AjoutEvenement {
             //String strtime = stf.format(timePicker.getText());
             System.out.println(timePicker.getText());
 
-            Evenement ev = new Evenement(0, tnom.getText(), tdescription.getText(), strDate, stringPicker.getValue().toString(), (int) nb.getValue(), false, 12, fichernom, lat, lng, timePicker.getText().toString());
+            Evenement ev = new Evenement(0, tnom.getText(), tdescription.getText(), strDate, stringPicker.getValue().toString(), (int) nb.getValue(), false, Session.getId(), fichernom, lat, lng, timePicker.getText().toString());
            
             if(validation( ev)){
             ser.addEvenement(ev);
