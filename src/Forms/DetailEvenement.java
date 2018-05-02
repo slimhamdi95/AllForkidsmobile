@@ -38,6 +38,7 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
+import java.util.Date;
 
 
 
@@ -85,12 +86,13 @@ public class DetailEvenement {
         f.add(nom);
         largePlaceholder = EncodedImage.createFromImage(theme.getImage("TitleArea.borderCenter_2.png"), false);
         largePlaceholder = largePlaceholder.scaledEncoded(200, 200);
-        Image i = URLImage.createToStorage(largePlaceholder, "ff1" + evenement.getNom(), "http://localhost/allforkids/web/uploads/images/" + evenement.getPhoto(), URLImage.RESIZE_SCALE_TO_FILL);
+        Date hash = new Date();
+        Image i = URLImage.createToStorage(largePlaceholder, System.currentTimeMillis()+hash.toString() + evenement.getNom(), "http://localhost/allforkids/web/uploads/images/" + evenement.getPhoto(), URLImage.RESIZE_SCALE_TO_FILL);
         /**
          * **google Map*********
          */
-Coord crd = new Coord(evenement.getLatitude(), evenement.getLongitude());
-        map.setCameraPosition(new Coord(evenement.getLatitude(), evenement.getLongitude()));
+        Coord crd = new Coord(evenement.getLatitude(), evenement.getLongitude());
+        map.setCameraPosition(crd);
         map.zoom(crd, 12);
 
         Style s = new Style();

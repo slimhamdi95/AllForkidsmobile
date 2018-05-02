@@ -143,7 +143,8 @@ public class AjoutEvenement {
                             cr.setPost(true);
                             String mime = "image/png";
                             cr.addData("file", filePath, mime);
-                            fichernom = System.currentTimeMillis() + ".png";
+                            Date hash = new Date();
+                            fichernom = System.currentTimeMillis()+hash.toString()+ ".png";
                             cr.setFilename("file", fichernom);
 
                             InfiniteProgress prog = new InfiniteProgress();

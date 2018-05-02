@@ -50,6 +50,23 @@ public class EvenementService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
+    public void UpdateEvenement(Evenement event) {
+        // Calendar s = new Calendar();
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/allforkids/web/app_dev.php/divertissement/updatemobile/"+event.getId_evenement()+"/"
+                + event.getNom() + "/" + event.getDescriptionn() + "/"
+                + event.getDate() + "/" + event.getNbr_participation() + "/" + event.getType() + "/" + event.getTemp() + "/" + event.getPhoto()
+                + "/" + event.getId_user() + "/" + event.getLatitude() + "/" + event.getLongitude();
+        con.setUrl(Url);
+
+        //System.out.println("tt");
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
      public void addEvenementParticipent(int id,int iduser) {
         // Calendar s = new Calendar();
         ConnectionRequest con = new ConnectionRequest();
@@ -181,7 +198,7 @@ public class EvenementService {
         
     }
 
-    ////oumou zebi lena  ///////
+    
     public Evenement getEvenement2(String json) {
         Evenement e = new Evenement();        
         
