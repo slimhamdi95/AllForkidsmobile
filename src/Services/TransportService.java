@@ -123,4 +123,18 @@ public class TransportService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return  Transport ;
     }
+    
+    private static int userId = 9;
+    public void addTransport (Transport transport){
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/Allforkids/web/app_dev.php/transport/newMobile/"
+                  +userId+ "/" + transport.getDescription()+ "/" 
+                   +transport.getTelephone()+ "/"+transport.getPlace()+"/"+transport.getFrais()
+                   + "/" +transport.getType();
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    } 
 }
