@@ -78,7 +78,7 @@ public class Transport {
     }
     
     public Transport(String region, String ville, String depart, String arrivé, String description, String telephone,
-            String place, String frais,Date date, String arriveName, String departName,int is_user) {
+            String place, String frais,Date date, String arriveName, String departName,int id_user) {
         this.region = region;
         this.ville = ville;
         this.depart = depart;

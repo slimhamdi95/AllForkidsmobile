@@ -13,6 +13,7 @@ import com.codename1.components.SpanLabel;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import java.io.IOException;
 
 /**
  *
@@ -24,22 +25,24 @@ public class ShowTransport {
     Label label ;
     Container container ;
     
-    public ShowTransport() {
-        form = new Form();
+    public ShowTransport() throws IOException {
+        form = new Form("offre de covoiturage");
         spanlabel = new SpanLabel("");
         label = new Label("");
         container = new Container();
         
         form.add(spanlabel);
         form.add(container);
+        form.add(label);
         
         TransportService serviceTransport = new TransportService();
         java.util.List<Transport> listTransport =  serviceTransport.getTransportList() ;
-        
+        System.out.println(listTransport.toString());
         for (Transport t : serviceTransport.getTransportList()) {
-            label.setText(t.getPlace());
-            MultiButton mb = new MultiButton(t.getPlace());
-            mb.setTextLine2(t.getTelephone());
+            MultiButton mb = new MultiButton(t.getDepartName());
+            mb.setTextLine2(t.getArriveName());
+            
+            container.add(mb);
         }
         
         form.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();

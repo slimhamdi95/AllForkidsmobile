@@ -109,6 +109,7 @@ ModifierUser i = new ModifierUser();
               Login a=new Login();
                   a.getF().show();
         });
+        
         btnaff.addActionListener((e)->{
         AffichageEvenement a = null ;
             try {
@@ -118,10 +119,14 @@ ModifierUser i = new ModifierUser();
             }
         a.getF().show();
         });
-
         
         btnaffcov.addActionListener((e)->{
-        ShowTransport a = new ShowTransport();
+        ShowTransport a = null ;
+            try {
+                a = new ShowTransport();
+            } catch (IOException ex) {
+                System.out.println("exception");
+            }
         a.getForm().show();
         });
 
