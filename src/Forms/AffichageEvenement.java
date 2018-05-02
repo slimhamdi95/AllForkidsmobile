@@ -10,6 +10,8 @@ import Services.EvenementService;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.MultiButton;
 import com.codename1.components.SpanLabel;
+import com.codename1.l10n.ParseException;
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
@@ -18,9 +20,12 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.List;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
+import java.util.Date;
+
 
 /**
  *
@@ -39,7 +44,7 @@ public class AffichageEvenement {
       
        
         f = new Form("List Evenement");
-        f1 = new Container();
+        f1 = new Container(BoxLayout.y());
         lb = new SpanLabel("");
         nom = new Label("");
         
@@ -49,10 +54,12 @@ public class AffichageEvenement {
         java.util.List<Evenement> l = serviceevent.getList2();
         System.out.println(l.toString());
         for (Evenement e : serviceevent.getList2()) {
+           
+           
             nom.setText(e.getNom());
  
-            MultiButton mb = new MultiButton(e.getNom());
-            mb.setTextLine2(e.getDescriptionn());
+           MultiButton mb = new MultiButton(e.getNom());
+            mb.setTextLine2(e.getDate()+"   "+e.getTemp());
            
             theme = UIManager.initFirstTheme("/theme");
             enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
@@ -69,8 +76,11 @@ public class AffichageEvenement {
   
 
             f1.add(mb);
+             
+          
             
-        }
+            }
+        
 
         f.getToolbar().addCommandToRightBar("back", null, (ev) -> {
             HomeForm h = new HomeForm();
