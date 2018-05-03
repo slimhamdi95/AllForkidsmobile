@@ -149,6 +149,22 @@ public class Evenement {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTemp() {
+        return temp;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp;
+    }
     
     
 

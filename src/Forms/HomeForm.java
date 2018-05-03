@@ -9,6 +9,7 @@ import Entity.Evenement;
 import Services.EvenementService;
 import com.codename1.capture.Capture;
 import com.codename1.messaging.Message;
+
 import com.codename1.ui.Button;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -26,6 +27,7 @@ public class HomeForm {
     Form f;
    
 
+
     Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser;
 
     Button btntof,mail;
@@ -33,12 +35,15 @@ public class HomeForm {
    // Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab;
 
 
+
     public HomeForm() {
         f = new Form("home");
        
+
         btnajout = new Button("ajouter");
         btntof = new Button("photo");
         btnaff=new Button("Affichage");
+
         btnajout = new Button("ajouterEvenet");
         btnaff=new Button("AffichageEvent");
        
@@ -47,13 +52,15 @@ public class HomeForm {
         
         btnajoutcov = new Button("ajouterCovoiturage");
         btnaffcov=new Button("Affichagecovoiturage");
+
         btnlogin=new Button("Login");
         btnsingin=new Button("SingIn");
         mail=new Button("mail");
         modifierUser=new Button("modifierUser");
+
         f.add(btnajout);
-        f.add(btntof);
         f.add(btnaff);
+
         f.add(btnlogin);
         f.add(btnsingin);
 f.add(mail);
@@ -102,6 +109,7 @@ ModifierUser i = new ModifierUser();
               Login a=new Login();
                   a.getF().show();
         });
+        
         btnaff.addActionListener((e)->{
         AffichageEvenement a = null ;
             try {
@@ -111,11 +119,29 @@ ModifierUser i = new ModifierUser();
             }
         a.getF().show();
         });
+        
+        btnaffcov.addActionListener((e)->{
+        ShowTransport a = null ;
+            try {
+                a = new ShowTransport();
+            } catch (IOException ex) {
+                System.out.println("exception");
+            }
+        a.getForm().show();
+        });
+        
+        btnajoutcov.addActionListener((e)->{
+        ajoutTransport a = null ;
+        a = new ajoutTransport();
+        a.getForm().show();
+        });
+
         btnsingin.addActionListener((e) -> {
             Inscrit i = new Inscrit();
             i.getF().show();
         });
         
+
     }
 
     public Form getF() {

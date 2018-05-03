@@ -8,32 +8,26 @@ package Forms;
 import Entity.Evenement;
 import Entity.Session;
 import Services.EvenementService;
-import com.codename1.capture.Capture;
 import com.codename1.components.InfiniteProgress;
-import com.codename1.components.InteractionDialog;
+import com.codename1.components.SpanLabel;
 import com.codename1.components.ToastBar;
 import com.codename1.googlemaps.MapContainer;
-import com.codename1.io.FileSystemStorage;
 import com.codename1.io.MultipartRequest;
 import com.codename1.io.NetworkManager;
-import com.codename1.io.Storage;
+import com.codename1.l10n.ParseException;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.maps.Coord;
 import com.codename1.ui.Button;
-import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
-import com.codename1.ui.Image;
-import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.geom.Rectangle;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -41,52 +35,67 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.NumericSpinner;
 import com.codename1.ui.spinner.Picker;
-import com.codename1.ui.util.ImageIO;
 import java.io.IOException;
-import java.io.OutputStream;
-
 import java.util.Date;
-import static jdk.nashorn.internal.objects.NativeArray.map;
+import java.util.Random;
+
 
 /**
  *
  * @author slim
  */
-public class AjoutEvenement {
+public class UpdateEvenement {
 
-    double lat= 0,  lng=0;
+    Form f;
+    double lat = 0, lng = 0;
     TextField tnom;
+    String nomvalidation ;
     TextField tdescription;
     Picker datePicker;
     Picker timePicker;
-    String fichernom="";
+    String fichernom = "";
     Picker stringPicker;
     Button btnajout, btnimage;
-    Form f;
     MapContainer map = new MapContainer("AIzaSyDeptHcVals3Rfz-bAVNxFzttb7DzhQMv4");
-    Dialog dd  ;
-    public AjoutEvenement() {
+    Dialog dd;
+    EvenementService es = new EvenementService();
+
+    public UpdateEvenement(Evenement ev) {
+        lat= ev.getLatitude();
+        lng=ev.getLatitude();
+        nomvalidation = ev.getNom();
+        fichernom = ev.getPhoto();
+        f = new Form("Modifier " + ev.getNom(), BoxLayout.y());
         f = new Form("home", BoxLayout.y());
-        tnom = new TextField("","Nom");
-        tdescription = new TextField("","Description");
+        tnom = new TextField(ev.getNom(), "Nom");
+        tdescription = new TextField(ev.getDescriptionn(), "Description");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = sdf.parse(ev.getDate());
+        } catch (ParseException ex) {
+            System.out.println("erreur date paress");
+        }
         datePicker = new Picker();
+        datePicker.setDate(date);
         btnimage = new Button("Image");
 
         NumericSpinner nb = new NumericSpinner();
-        nb.setMin(1);
-        datePicker.setDate(new Date());
+        nb.setMin(es.getNbparticipent(ev.getId_evenement()));
+        nb.setValue(ev.getNbr_participation());
         timePicker = new Picker();
         timePicker.setType(Display.PICKER_TYPE_TIME);
+        timePicker.setText(ev.getTemp());
         stringPicker = new Picker();
         stringPicker.setType(Display.PICKER_TYPE_STRINGS);
         stringPicker.setStrings("musique", "cinema", "theatre", "randonnée",
                 "magicien", "Parck");
-        stringPicker.setSelectedString("Parck");
-        btnajout = new Button("ajouter");
+        stringPicker.setSelectedString(ev.getType());
+        btnajout = new Button("Modifier");
         /**
          * **google Map*********
          */
-        Coord crd = new Coord(36.862499, 10.195556);
+        Coord crd = new Coord(lat, lng);
         map.setCameraPosition(crd);
         map.zoom(crd, 12);
         Button btnMoveCamera = new Button("Déplacer Caméra");
@@ -97,14 +106,22 @@ public class AjoutEvenement {
         s.setFgColor(0xff0000);
         s.setBgTransparency(0);
         FontImage markerImg = FontImage.createMaterial(FontImage.MATERIAL_PLACE, s, Display.getInstance().convertToPixels(3));
-
+        map.addMarker(
+                EncodedImage.createFromImage(markerImg, false),
+                new Coord(ev.getLatitude(), ev.getLongitude()),
+                "Emplacement",
+                "Optional long description",
+                evt -> {
+                    ToastBar.showMessage("You clicked the marker", FontImage.MATERIAL_PLACE);
+                }
+        );
         map.addTapListener(e -> {
             map.clearMapLayers();
 
             Coord c = map.getCoordAtPosition(e.getX(), e.getY());
             lat = c.getLatitude();
             lng = c.getLongitude();
-            System.out.println(lat + " " + lng);
+
             map.addMarker(
                     EncodedImage.createFromImage(markerImg, false),
                     map.getCoordAtPosition(e.getX(), e.getY()),
@@ -127,7 +144,7 @@ public class AjoutEvenement {
         /**
          * ******************
          */
-        /**
+         /**
          * ****Uplode Image *************
          */
         btnimage.addActionListener((ActionEvent e) -> {
@@ -137,7 +154,7 @@ public class AjoutEvenement {
                         String filePath = (String) ev.getSource();
                         f.add(filePath);
                         try {
-
+                           
                             MultipartRequest cr = new MultipartRequest();
                             cr.setUrl("http://localhost/allforkids/web/imageUpload.php");
                             cr.setPost(true);
@@ -171,21 +188,20 @@ public class AjoutEvenement {
         f.add(btnimage);
         f.add(root);
         f.add(btnajout);
-
-        btnajout.addActionListener((ActionEvent e) -> {
+         btnajout.addActionListener((ActionEvent e) -> {
              EvenementService ser = new EvenementService();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 
-            String strDate = sdf.format(datePicker.getDate());
+            String strDate = sdf1.format(datePicker.getDate());
             //String strtime = stf.format(timePicker.getText());
             System.out.println(timePicker.getText());
 
-            Evenement ev = new Evenement(0, tnom.getText(), tdescription.getText(), strDate, stringPicker.getValue().toString(), (int) nb.getValue(), false, Session.getId(), fichernom, lat, lng, timePicker.getText().toString());
+            Evenement ev1 = new Evenement(ev.getId_evenement(), tnom.getText(), tdescription.getText(), strDate, stringPicker.getValue().toString(), (int) nb.getValue(), false, 9, fichernom, lat, lng, timePicker.getText().toString());
            
-            if(validation( ev)){
-            ser.addEvenement(ev);
+            if(validation( ev1)){
+            ser.UpdateEvenement(ev1);
             Dialog d = new Dialog("Succes!");
-            TextArea popupBody = new TextArea("Evenement Ajouter avec succes", 3, 10);
+            TextArea popupBody = new TextArea("Evenement Modifier avec succes", 3, 10);
             popupBody.setUIID("PopupBody");
             popupBody.setEditable(false);
             Button ok = new Button("OK");
@@ -206,15 +222,6 @@ public class AjoutEvenement {
             }
            
         });
-         f.getToolbar().addCommandToRightBar("back", null, (ev) -> {
-            AffichageEvenement h = null;
-            try {
-                h = new AffichageEvenement();
-            } catch (IOException ex) {
-                System.out.println("ereor");
-            }
-            h.getF().show();
-        });
     }
 
     public Form getF() {
@@ -224,12 +231,12 @@ public class AjoutEvenement {
     public void setF(Form f) {
         this.f = f;
     }
-public boolean validation(Evenement e){
+    public boolean validation(Evenement e){
     boolean a = false ;
     EvenementService es = new EvenementService();
     if(!e.getNom().equals("")){
     for (Evenement ev : es.getList2()) {
-        if(e.getNom().equals(ev.getNom())){
+        if((e.getNom().equals(ev.getNom()))&&(!(e.getNom().equals(nomvalidation)))){
          
              dd = new Dialog("Erreur");
             TextArea popupBody = new TextArea("Le Nom existe deja !", 3, 10);

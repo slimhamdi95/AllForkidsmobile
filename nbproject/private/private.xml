@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Services/EtablissementService.java</file>
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/AjouterEtablissement.java</file>
             <file>file:/C:/Users/MBM%20info/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/DetailEtablissement.java</file>
+=======
+            <file>file:/C:/Users/slim/Documents/NetBeansProjects/AllForkidsmobile/src/Services/EvenementService.java</file>
+            <file>file:/C:/Users/slim/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/AjoutEvenement.java</file>
+            <file>file:/C:/Users/slim/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/DetailEvenement.java</file>
+            <file>file:/C:/Users/slim/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/UpdateEvenement.java</file>
+>>>>>>> e62db9674b5ce7da70749e2c5c2f9ff8030ab19d
         </group>
     </open-files>
 </project-private>
