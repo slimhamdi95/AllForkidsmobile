@@ -91,10 +91,14 @@ public class DetailEvenement {
         /**
          * **google Map*********
          */
+        System.out.println("lat:"+evenement.getLatitude()+"lng"+evenement.getLongitude());
         Coord crd = new Coord(evenement.getLatitude(), evenement.getLongitude());
-        map.setCameraPosition(crd);
+        map.setCameraPosition( new Coord(evenement.getLatitude(), evenement.getLongitude()));
         map.zoom(crd, 12);
-
+ Button btnMoveCamera = new Button("Déplacer Caméra");
+        btnMoveCamera.addActionListener(e -> {
+            map.setCameraPosition(crd);
+        });
         Style s = new Style();
         s.setFgColor(0xff0000);
         s.setBgTransparency(0);
@@ -109,9 +113,11 @@ public class DetailEvenement {
                     ToastBar.showMessage("You clicked the marker", FontImage.MATERIAL_PLACE);
                 }
         );
-
-        Container root = LayeredLayout.encloseIn(
-                BorderLayout.center(map)
+Container root = LayeredLayout.encloseIn(
+                BorderLayout.center(map),
+                BorderLayout.south(
+                        FlowLayout.encloseBottom(btnMoveCamera)
+                )
         );
         /**
          * ******************
@@ -124,7 +130,7 @@ public class DetailEvenement {
         int nbr = evenement.getNbr_participation() - es.getNbparticipent(evenement.getId_evenement());
         f.add(new Label("" + nbr));
         f.add(root);
-        if (evenement.getId_user() != 1 ) { //==Session.getId() fiiblaset !=1
+        if (evenement.getId_user() ==Session.getId() ) { //==Session.getId() fiiblaset !=1
             f.add(modif);
             f.add(sup);
         } else {
