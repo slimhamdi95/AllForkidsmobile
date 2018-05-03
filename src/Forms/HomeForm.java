@@ -44,7 +44,7 @@ public class HomeForm {
         btntof = new Button("photo");
         btnaff=new Button("Affichage");
 
-        btnajout = new Button("ajouterEvenet");
+        btnajout = new Button("AfficherLivre");
         btnaff=new Button("AffichageEvent");
        
         btnajoutetab = new Button("ajouterEtab");
@@ -101,7 +101,8 @@ ModifierUser i = new ModifierUser();
         
         
         btnajout.addActionListener((e) -> {
-           
+            AfficherLivre a=new AfficherLivre();
+                  a.getF().show();
         });
         
         

@@ -62,20 +62,8 @@ public class DetailEvenement {
     Button modif = new Button("Modifier");
     Button sup = new Button("Supprimer");
 
-    public DetailEvenement(int id) {
-       this.id = id;
-        Evenement evenement = new Evenement();
-        evenement.setId_evenement(id);
-        evenement.setNom(es.showDetail(id).getNom());
-        evenement.setDescriptionn(es.showDetail(id).getDescriptionn());
-        evenement.setDate(es.showDetail(id).getDate());
-        evenement.setId_user(es.showDetail(id).getId_user());
-        evenement.setType(es.showDetail(id).getType());
-        evenement.setTemp(es.showDetail(id).getTemp());
-        evenement.setNbr_participation(es.showDetail(id).getNbr_participation());
-        evenement.setPhoto(es.showDetail(id).getPhoto());
-        evenement.setLatitude(es.showDetail(id).getLatitude());
-        evenement.setLongitude(es.showDetail(id).getLongitude());
+    public DetailEvenement(Evenement evenement) {
+       
         f = new Form("Evenement", new BoxLayout(Y_AXIS));
         lb = new SpanLabel("");
         nom = new Label(evenement.getNom(), "SecondaryTitle");
@@ -150,7 +138,7 @@ Container root = LayeredLayout.encloseIn(
             popupBody.setEditable(false);
             Button ok = new Button("OK");
              ok.addActionListener((ActionEvent ee) -> {
-                 DetailEvenement a = new DetailEvenement(id);
+                 DetailEvenement a = new DetailEvenement(evenement);
            
             a.getF().show();
             });
@@ -166,7 +154,7 @@ Container root = LayeredLayout.encloseIn(
         boolean df =  Dialog.show("Suppression","Vous les vous vraiment Annuler participation?","Oui","Non");
           if(df){
             es.anullEvenementParticipent(id, Session.getId());
-              DetailEvenement a = new DetailEvenement(id);
+              DetailEvenement a = new DetailEvenement(evenement);
           
             a.getF().show();
           }

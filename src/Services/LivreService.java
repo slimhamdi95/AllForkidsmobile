@@ -49,7 +49,7 @@ public class LivreService {
                 e.setNom(obj.get("nom").toString());
                 e.setDescription(obj.get("description").toString());
                 e.setCategorie(obj.get("categorie").toString());
-                e.setPhoto(obj.get("categorie").toString());
+                e.setPhoto(obj.get("photo").toString());
                 e.setType(obj.get("type").toString());
                 e.setGood((int) good);
                 e.setBad((int) bad);
