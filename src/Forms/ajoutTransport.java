@@ -5,10 +5,17 @@
  */
 package Forms;
 
+import Entity.Transport;
+import Services.TransportService;
+import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 
 /**
@@ -22,6 +29,7 @@ public class ajoutTransport {
     public ajoutTransport (){
     form = new Form("remplir le formulaire", BoxLayout.y());
     
+    /*
     form.add(new Label("poit de depart:"));
     TextField depart = new TextField();
     form.add(depart);
@@ -29,7 +37,7 @@ public class ajoutTransport {
     form.add(new Label("poit d'arrivé:"));
     TextField arrivé = new TextField();
     form.add(arrivé);
-    
+    */
     form.add(new Label("description:"));
     TextField description = new TextField();
     form.add(description);
@@ -51,6 +59,23 @@ public class ajoutTransport {
         type.addItem("occasionnellement");
         type.addItem("reguliérement");
     form.add(type);
+    
+    Button valider = new Button("valider");
+    
+    valider.addActionListener((ActionEvent e) -> {
+            TransportService service = new TransportService();
+            Transport transport = new Transport();
+            service.addTransport(transport);
+            Dialog d = new Dialog("Succes!");
+            TextArea popupBody = new TextArea("votre offre est valider");
+            popupBody.setUIID("PopupBody");
+            popupBody.setEditable(false);
+            d.setLayout(new BorderLayout());
+            d.add(BorderLayout.CENTER, popupBody);
+            d.show();
+            d.setTimeout(2000);
+            
+        });
     }
     
     public Form getForm() {
