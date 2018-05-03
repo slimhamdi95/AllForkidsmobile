@@ -78,7 +78,7 @@ public class Transport {
     }
     
     public Transport(String region, String ville, String depart, String arrivé, String description, String telephone,
-            String place, String frais,Date date, String arriveName, String departName,int is_user) {
+            String place, String frais,Date date, String arriveName, String departName,int id_user) {
         this.region = region;
         this.ville = ville;
         this.depart = depart;
@@ -111,7 +111,7 @@ public class Transport {
     }
 
     public Transport() {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     public void setId_user(int id_user) {

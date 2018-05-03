@@ -17,6 +17,11 @@ public class Region {
     public Region() {
     }
 
+    public Region(int id_region, String nom_region) {
+        this.id_region = id_region;
+        this.nom_region = nom_region;
+    }
+   
     public int getId_region() {
         return id_region;
     }
