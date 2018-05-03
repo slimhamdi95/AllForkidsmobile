@@ -48,6 +48,7 @@ public class LoginService  {
                  e.setId(ser.getUser4(new String(con.getResponseData())).getId());
                   e.setCin(ser.getUser4(new String(con.getResponseData())).getCin());
                    e.setNom(ser.getUser4(new String(con.getResponseData())).getNom());
+                     e.setDate(ser.getUser4(new String(con.getResponseData())).getDate());
                     e.setPrenom(ser.getUser4(new String(con.getResponseData())).getPrenom());
                  e.setUsername( ser.getUser4(new String(con.getResponseData())).getUsername());
                  e.setPassword(ser.getUser4(new String(con.getResponseData())).getPassword());
@@ -80,6 +81,7 @@ public class LoginService  {
                 e.setUsername(events.get("username").toString());
                 e.setPicture(events.get("picture").toString());
                   e.setPrenom(events.get("prenom").toString());
+                  e.setDate(events.get("date").toString());
                    e.setNom(events.get("nom").toString());
                    e.setCin(events.get("cin").toString());
                 e.setPassword(events.get("password").toString());
@@ -98,10 +100,33 @@ public class LoginService  {
       // Calendar s = new Calendar();
        ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/allforkids/web/app_dev.php/ent/Inscrit/"
-                  + user.getNom() + "/" + user.getCin()
-                + "/" 
-                   +"2018-03-11" + "/" +50+ "/" +"bbf"+ "/" +  "00:00:00"+"/"+"vssv"
-                   + "/" +12+ "/" +1.256+ "/" +58.23;
+                  + user.getUsername() + "/" + user.getNom()
+                + "/" +user.getPrenom() + 
+                "/" +user.getRoles()+ "/"
+                +user.getEmail() +"/"
+        +user.getCin()+"/"+user.getPassword()
+                   + "/" +user.getDate()+ "/" +user.getPicture();
+        con.setUrl(Url);
+
+        //System.out.println("tt");
+
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+      public void Modifier(UserE user) {
+      // Calendar s = new Calendar();
+       ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/allforkids/web/app_dev.php/ent/Modifier/"
+                 +user.getId()+"/" + user.getUsername() + "/" + user.getNom()
+                + "/" +user.getPrenom() + 
+                "/" +user.getRoles()+ "/"
+                +user.getEmail() +"/"
+        +user.getCin()+"/"+user.getPassword()
+                   + "/" +user.getDate()+ "/" +user.getPicture();
         con.setUrl(Url);
 
         //System.out.println("tt");

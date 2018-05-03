@@ -11,6 +11,7 @@ import Services.LoginService;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.MultipartRequest;
 import com.codename1.io.NetworkManager;
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
@@ -23,6 +24,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.spinner.Picker;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  *
@@ -30,7 +32,8 @@ import java.io.IOException;
  */
 public class Inscrit {
      Form f;
-  
+      Picker datePicker;
+
   Picker stringPicker;
 String fichernom;
 
@@ -55,6 +58,8 @@ String fichernom;
            email =new TextField("","email");
             cin =new TextField("","cin");
              pic = new Button("photo");
+                     datePicker = new Picker();
+
              password =new TextField("","password"); 
              passwordVerif =new TextField("","password Verif"); 
              
@@ -63,6 +68,7 @@ String fichernom;
         stringPicker.setType(Display.PICKER_TYPE_STRINGS);
         stringPicker.setStrings("Parent", "Enfant", "Docter","Respensable");
         stringPicker.setSelectedString("Parent");
+        datePicker.setDate(new Date());
 
         
         valider = new Button("valider");
@@ -100,6 +106,7 @@ String fichernom;
        // f.add(Username1);
          f.add(Username);
           f.add(nom);
+          f.add(datePicker);
          //  f.add(nom1);
             f.add(prenom);
           //   f.add(prenom1);
@@ -125,8 +132,10 @@ String fichernom;
         
        valider.addActionListener((e) -> {
            LoginService s = new LoginService();
-           
-           UserE u = new UserE(0,Username.getText(),email.getText(),stringPicker.getText(),cin.getText(),nom.getText(),prenom.getText(),date.getText(),pic.getText(),password.getText());
+           SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+           Date d = new Date();
+           String dd = sdf.format(datePicker.getDate());
+           UserE u = new UserE(0,Username.getText(),email.getText(),stringPicker.getText(),cin.getText(),nom.getText(),prenom.getText(),dd,pic.getText(),password.getText());
            s.Inscrit(u);
                     
         });
