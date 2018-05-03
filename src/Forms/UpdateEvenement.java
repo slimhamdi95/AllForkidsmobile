@@ -161,7 +161,7 @@ public class UpdateEvenement {
                             String mime = "image/png";
                             cr.addData("file", filePath, mime);
                             Date hash = new Date();
-                            fichernom = System.currentTimeMillis()+hash.toString()+ ".png";
+                            fichernom = System.currentTimeMillis()+ ".png";
                             cr.setFilename("file", fichernom);
 
                             InfiniteProgress prog = new InfiniteProgress();
@@ -196,7 +196,8 @@ public class UpdateEvenement {
             //String strtime = stf.format(timePicker.getText());
             System.out.println(timePicker.getText());
 
-            Evenement ev1 = new Evenement(ev.getId_evenement(), tnom.getText(), tdescription.getText(), strDate, stringPicker.getValue().toString(), (int) nb.getValue(), false, 9, fichernom, lat, lng, timePicker.getText().toString());
+            Evenement ev1 = new Evenement(ev.getId_evenement(), tnom.getText(), tdescription.getText(), strDate, stringPicker.getValue().toString()
+                                        , (int) nb.getValue(), false, Session.getId(), fichernom, lat, lng, timePicker.getText().toString());
            
             if(validation( ev1)){
             ser.UpdateEvenement(ev1);
