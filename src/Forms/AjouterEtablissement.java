@@ -49,7 +49,6 @@ import java.util.Date;
 public class AjouterEtablissement {
     
     TextField tnom;
-    
     ComboBox<String> type;
     ComboBox<String> region;
     ComboBox<String> ville;
@@ -164,8 +163,9 @@ public class AjouterEtablissement {
 
         btnajout.addActionListener((ActionEvent e) -> {
             EtablissementService ser = new EtablissementService();
-            Etablissement ev = new Etablissement();
-            ser.addEtablissement(ev);
+            Etablissement et = new Etablissement(tnom.getText(),type.getSelectedItem(),region.getSelectedItem(),
+            ville.getSelectedItem(),tdescription.getText(),imagenom);
+            ser.addEtablissement(et);
             Dialog d = new Dialog("Succes!");
             TextArea popupBody = new TextArea("Etablissement Ajouter avec succes");
             popupBody.setUIID("PopupBody");
