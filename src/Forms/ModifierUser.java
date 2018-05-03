@@ -11,6 +11,7 @@ import Services.LoginService;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.MultipartRequest;
 import com.codename1.io.NetworkManager;
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
@@ -21,6 +22,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.spinner.Picker;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  *
@@ -31,7 +33,7 @@ public class ModifierUser {
   
   Picker stringPicker;
 String fichernom;
-
+Picker datePicker;
     TextField date,Username, nom , prenom , role ,email , cin , password,passwordVerif;
     
     Button valider , vider ,pic;
@@ -50,6 +52,9 @@ String fichernom;
         nom=new TextField(ls.showDetail(Session.getUsername()).getNom());
          prenom =new TextField(ls.showDetail(Session.getUsername()).getPrenom());
           role =new TextField(ls.showDetail(Session.getUsername()).getRoles());
+          datePicker = new Picker();
+          
+          datePicker.setText(ls.showDetail(Session.getUsername()).getDate());
            email =new TextField(ls.showDetail(Session.getUsername()).getEmail());
             cin =new TextField(ls.showDetail(Session.getUsername()).getCin());
              pic = new Button(ls.showDetail(Session.getUsername()).getPicture());
@@ -106,7 +111,7 @@ String fichernom;
             f.add(prenom);
           //   f.add(prenom1);
               f.add(email);
-            
+            f.add(datePicker);
            f.add(pic);
                f.add(cin);
       //  f.add(cin1);
@@ -123,9 +128,11 @@ String fichernom;
         
        valider.addActionListener((e) -> {
            LoginService s = new LoginService();
-           
-           UserE u = new UserE(0,Username.getText(),email.getText(),stringPicker.getText(),cin.getText(),nom.getText(),prenom.getText(),date.getText(),pic.getText(),password.getText());
-           s.Inscrit(u);
+          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+           Date d = new Date();
+           String dd = sdf.format(datePicker.getDate());
+           UserE u = new UserE(Session.getId(),Username.getText(),email.getText(),stringPicker.getText(),cin.getText(),nom.getText(),prenom.getText(),dd,pic.getText(),password.getText());
+           s.Modifier(u);
                     
         });
      
