@@ -53,7 +53,7 @@ public class Login {
         f.add(facebook);
        valider.addActionListener((e) -> {
            LoginService s = new LoginService();
-           
+               
            UserE u = new UserE();
            u.setUsername(s.showDetail(login.getText()).getUsername());
            u.setPassword(s.showDetail(login.getText()).getPassword());
@@ -70,10 +70,8 @@ public class Login {
         });
        
        facebook.addActionListener((e) -> {
-           LoginService s = new LoginService();
-        
-           UserE u = new UserE();
-          s.loginFacebook(f);
+           UserForm hi = new UserForm();
+        hi.show();
         });
      
        
