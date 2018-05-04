@@ -8,12 +8,14 @@ package Forms;
 import Services.EtablissementService;
 import Services.EvenementService;
 import com.codename1.components.SpanLabel;
+import com.codename1.ui.Button;
 import static com.codename1.ui.Component.CENTER;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BoxLayout;
 import static com.codename1.ui.layouts.BoxLayout.Y_AXIS;
@@ -29,6 +31,7 @@ public class DetailEtablissement {
     Form f;
    SpanLabel lb;
    Label nom ;
+   Button btndelete ;
     private Resources theme;
     private EncodedImage largePlaceholder;
   private  int id ;
@@ -66,6 +69,16 @@ public class DetailEtablissement {
                 System.out.println("erreur");
             h.getForm().show();
         });
+       
+      
+        btndelete = new Button("Effacer"); 
+        btndelete.addActionListener((ActionEvent e) -> {
+        
+            EtablissementService ser = new EtablissementService();
+            ser.deleteEtablissement(id);
+        
+        });
+        f.add(btndelete);
     }
     
      public Form getF() {

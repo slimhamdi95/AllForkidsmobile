@@ -31,7 +31,6 @@ public class EtablissementService {
     private static int userId = 11; //Session.getId();
 
     public void addEtablissement(Etablissement etab) {
-      // Calendar s = new Calendar();
        ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/Allforkids/web/app_dev.php/Etab/new1/"
                   +userId+ "/" + etab.getNom()+ "/" 
@@ -39,7 +38,6 @@ public class EtablissementService {
                    + "/" +etab.getDescription()+ "/" +etab.getImage()+ "/"+"Non valide";
         con.setUrl(Url);
 
-        //System.out.println("tt");
 
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());
@@ -149,5 +147,20 @@ public class EtablissementService {
         }
        return e ;
 
+    }
+    
+    public void deleteEtablissement(int id){
+     ConnectionRequest con = new ConnectionRequest();
+        String Url = ("http://localhost/Allforkids/web/app_dev.php/Etab/delete/"+id);
+        
+        con.setUrl(Url); 
+
+
+        con.removeResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
     }
 }

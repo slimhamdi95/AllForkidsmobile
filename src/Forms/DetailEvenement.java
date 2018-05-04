@@ -62,20 +62,8 @@ public class DetailEvenement {
     Button modif = new Button("Modifier");
     Button sup = new Button("Supprimer");
 
-    public DetailEvenement(int id) {
-       this.id = id;
-        Evenement evenement = new Evenement();
-        evenement.setId_evenement(id);
-        evenement.setNom(es.showDetail(id).getNom());
-        evenement.setDescriptionn(es.showDetail(id).getDescriptionn());
-        evenement.setDate(es.showDetail(id).getDate());
-        evenement.setId_user(es.showDetail(id).getId_user());
-        evenement.setType(es.showDetail(id).getType());
-        evenement.setTemp(es.showDetail(id).getTemp());
-        evenement.setNbr_participation(es.showDetail(id).getNbr_participation());
-        evenement.setPhoto(es.showDetail(id).getPhoto());
-        evenement.setLatitude(es.showDetail(id).getLatitude());
-        evenement.setLongitude(es.showDetail(id).getLongitude());
+    public DetailEvenement(Evenement evenement) {
+       
         f = new Form("Evenement", new BoxLayout(Y_AXIS));
         lb = new SpanLabel("");
         nom = new Label(evenement.getNom(), "SecondaryTitle");
@@ -91,10 +79,14 @@ public class DetailEvenement {
         /**
          * **google Map*********
          */
+        System.out.println("lat:"+evenement.getLatitude()+"lng"+evenement.getLongitude());
         Coord crd = new Coord(evenement.getLatitude(), evenement.getLongitude());
-        map.setCameraPosition(crd);
+        map.setCameraPosition( new Coord(evenement.getLatitude(), evenement.getLongitude()));
         map.zoom(crd, 12);
-
+ Button btnMoveCamera = new Button("Déplacer Caméra");
+        btnMoveCamera.addActionListener(e -> {
+            map.setCameraPosition(crd);
+        });
         Style s = new Style();
         s.setFgColor(0xff0000);
         s.setBgTransparency(0);
@@ -109,9 +101,11 @@ public class DetailEvenement {
                     ToastBar.showMessage("You clicked the marker", FontImage.MATERIAL_PLACE);
                 }
         );
-
-        Container root = LayeredLayout.encloseIn(
-                BorderLayout.center(map)
+Container root = LayeredLayout.encloseIn(
+                BorderLayout.center(map),
+                BorderLayout.south(
+                        FlowLayout.encloseBottom(btnMoveCamera)
+                )
         );
         /**
          * ******************
@@ -124,7 +118,7 @@ public class DetailEvenement {
         int nbr = evenement.getNbr_participation() - es.getNbparticipent(evenement.getId_evenement());
         f.add(new Label("" + nbr));
         f.add(root);
-        if (evenement.getId_user() != 1 ) { //==Session.getId() fiiblaset !=1
+        if (evenement.getId_user() ==Session.getId() ) { //==Session.getId() fiiblaset !=1
             f.add(modif);
             f.add(sup);
         } else {
@@ -144,7 +138,7 @@ public class DetailEvenement {
             popupBody.setEditable(false);
             Button ok = new Button("OK");
              ok.addActionListener((ActionEvent ee) -> {
-                 DetailEvenement a = new DetailEvenement(id);
+                 DetailEvenement a = new DetailEvenement(evenement);
            
             a.getF().show();
             });
@@ -160,7 +154,7 @@ public class DetailEvenement {
         boolean df =  Dialog.show("Suppression","Vous les vous vraiment Annuler participation?","Oui","Non");
           if(df){
             es.anullEvenementParticipent(id, Session.getId());
-              DetailEvenement a = new DetailEvenement(id);
+              DetailEvenement a = new DetailEvenement(evenement);
           
             a.getF().show();
           }
