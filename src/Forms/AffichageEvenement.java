@@ -63,7 +63,7 @@ public class AffichageEvenement {
             theme = UIManager.initFirstTheme("/theme");
             enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
             Date hash = new Date();
-            Image i = URLImage.createToStorage(enc,System.currentTimeMillis()+hash.toString(), "http://localhost/allforkids/web/uploads/images/" + e.getPhoto(), URLImage.RESIZE_SCALE);
+            Image i = URLImage.createToStorage(enc,System.currentTimeMillis()+hash.toString()+e.getNom(), "http://localhost/allforkids/web/uploads/images/" + e.getPhoto(), URLImage.RESIZE_SCALE);
 
             mb.setIcon(i);
             mb.addActionListener((al)->{

@@ -23,6 +23,7 @@ import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
 
 /**
  *
@@ -31,7 +32,7 @@ import com.codename1.ui.layouts.BorderLayout;
 public class Login {
 
     Form f;
-
+    Dialog dd;
     Label lb;
     Label nom;
     Container f1;
@@ -40,7 +41,7 @@ public class Login {
 
     public Login() {
 
-        f = new Form();
+        f = new Form("LogIn", BoxLayout.y());
         f1 = new Container();
         lb = new Label("login");
         nom = new Label("pass");
@@ -56,13 +57,31 @@ public class Login {
         f.add(valider);
         f.add(facebook);
 
-        valider.addActionListener((e) -> {
+        valider.addActionListener((ActionEvent e) -> {
             LoginService s = new LoginService();
 
             UserE u = new UserE();
             u.setUsername(s.showDetail(login.getText()).getUsername());
             u.setPassword(s.showDetail(login.getText()).getPassword());
+
             u.setId(s.showDetail(login.getText()).getId());
+            int id12 = u.getId();
+            if (id12 == 0) {
+                dd = new Dialog("Erreur");
+                TextArea popupBody = new TextArea("User name invalide !", 3, 10);
+                popupBody.setUIID("PopupBody");
+                popupBody.setEditable(false);
+                Button close = new Button("OK");
+
+                close.addActionListener((ActionEvent ee) -> {
+                    dd.dispose();
+                });
+                dd.setLayout(new BorderLayout());
+                dd.add(BorderLayout.SOUTH, close);
+                dd.add(BorderLayout.CENTER, popupBody);
+                dd.show();
+            }
+
             if (BCrypt.checkpw(pass.getText(), u.getPassword())) {
                 Session.setId(s.showDetail(login.getText()).getId());
                 System.out.println("ghvgjj" + u.getId());
@@ -71,9 +90,21 @@ public class Login {
                 m.getF().show();*/
                 HomeForm h = new HomeForm();
                 h.getF().show();
-            }
+            }else{
+               dd = new Dialog("Erreur");
+                TextArea popupBody = new TextArea("Mot de passe invalide !", 3, 10);
+                popupBody.setUIID("PopupBody");
+                popupBody.setEditable(false);
+                Button close = new Button("OK");
 
-            System.out.println(u.toString());
+                close.addActionListener((ActionEvent ee) -> {
+                    dd.dispose();
+                });
+                dd.setLayout(new BorderLayout());
+                dd.add(BorderLayout.SOUTH, close);
+                dd.add(BorderLayout.CENTER, popupBody);
+                dd.show();
+            }
 
         });
 

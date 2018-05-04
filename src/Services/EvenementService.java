@@ -136,7 +136,7 @@ public class EvenementService {
                 float longitude = Float.parseFloat(obj.get("longitude").toString());
                 
                 e.setId_evenement((int) idEvenement);
-                
+                e.setType(obj.get("type").toString());
                 e.setNom(obj.get("nom").toString());
                 e.setDescriptionn(obj.get("descriptionn").toString());
                 e.setPhoto(obj.get("photo").toString());
@@ -186,6 +186,7 @@ public class EvenementService {
                 e.setPhoto(ser.getEvenement2(new String(con.getResponseData())).getPhoto());
                 e.setNbr_participation(ser.getEvenement2(new String(con.getResponseData())).getNbr_participation());
                 e.setDate(ser.getEvenement2(new String(con.getResponseData())).getDate());
+                e.setType(ser.getEvenement2(new String(con.getResponseData())).getType());
                 e.setId_user(ser.getEvenement2(new String(con.getResponseData())).getId_user());
                 e.setLatitude(ser.getEvenement2(new String(con.getResponseData())).getLatitude());
                 e.setLongitude(ser.getEvenement2(new String(con.getResponseData())).getLongitude());
