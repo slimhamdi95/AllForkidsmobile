@@ -118,6 +118,7 @@ public class TransportService {
                     Transport.setPlace(service.getTransportEntity(new String(con.getResponseData())).getPlace());
                     Transport.setFrais(service.getTransportEntity(new String(con.getResponseData())).getFrais());
                     Transport.setType(service.getTransportEntity(new String(con.getResponseData())).getType());
+                    Transport.setId_user(service.getTransportEntity(new String(con.getResponseData())).getId_user());
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);

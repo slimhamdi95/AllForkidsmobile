@@ -5,13 +5,20 @@
  */
 package Forms;
 
+import Entity.Session;
 import Entity.Transport;
 import Services.TransportService;
 import com.codename1.components.SpanLabel;
+import com.codename1.ui.Button;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextArea;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import static com.codename1.ui.layouts.BoxLayout.Y_AXIS;
+import java.io.IOException;
 /**
  *
  * @author DELL
@@ -36,6 +43,7 @@ public class DetailsTransport {
         transport.setPlace(service.getTransportDetails(id).getPlace());
         transport.setFrais(service.getTransportDetails(id).getFrais());
         transport.setType(service.getTransportDetails(id).getType());
+        transport.setId_user(service.getTransportDetails(id).getId_user());
         
         form = new Form("covoiturage",new BoxLayout(Y_AXIS));
         
@@ -57,6 +65,43 @@ public class DetailsTransport {
         form.getToolbar().addCommandToRightBar("back", null,(ev)->{HomeForm h=new HomeForm();
           h.getF().show();
           });
+        
+        Button Rejoindre = new Button("Rejoindre");
+        form.add(Rejoindre);
+        
+        Button Annuler = new Button("Annuler le offre");
+        if (transport.getId_user()== 9){             //*****************
+        form.add(Annuler);
+        }
+        
+        Annuler.addActionListener((al)->{
+        boolean df =  Dialog.show("Annulation","Vous les vous vraiment annuler L'offre ?","Oui","Non");
+          if(df){
+            service.DeleteTransport(id);
+            ShowTransport a = null;
+            try {
+                a = new ShowTransport();
+            } catch (IOException ex) {
+                    System.out.println("something went wrong");
+            }
+            a.getForm().show();
+          }
+        });
+        
+        Rejoindre.addActionListener((al)->{
+        boolean df =  Dialog.show("Rejoindre","Vous les vous vraiment rejoindre L'offre ?","Oui","Non");
+          if(df){
+            service.joindreTransport(id,13);           //**************
+            ShowTransport a = null;
+            try {
+                a = new ShowTransport();
+            } catch (IOException ex) {
+                    System.out.println("something went wrong");
+            }
+            a.getForm().show();
+          }
+        });
+
     }
     
     public Form getForm() {

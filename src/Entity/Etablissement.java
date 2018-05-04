@@ -24,6 +24,17 @@ public class Etablissement {
     public Etablissement() {
     }
 
+    public Etablissement(int id_etablissement, String nom, String type, String region, String ville, String description, String image, String verification) {
+        this.id_etablissement = id_etablissement;
+        this.nom = nom;
+        this.type = type;
+        this.region = region;
+        this.ville = ville;
+        this.description = description;
+        this.image = image;
+        this.verification = verification;
+    }
+    
     public Etablissement(String nom, String type, String region, String ville, String description, String image) {
         this.nom = nom;
         this.type = type;

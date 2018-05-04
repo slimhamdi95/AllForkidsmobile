@@ -7,6 +7,7 @@ package Forms;
 
 import Entity.Etablissement;
 import Entity.Evenement;
+import Entity.Session;
 import Services.EtablissementService;
 import Services.EvenementService;
 import com.codename1.components.MultiButton;
@@ -20,65 +21,91 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
-import com.codename1.ui.util.Resources;  
 import com.codename1.ui.util.Resources;
+import com.codename1.ui.util.Resources;
+import java.io.IOException;
 
 /**
  *
  * @author FATNASSI
  */
 public class AffichageEtablissement {
- 
+
     Form form;
     SpanLabel lb;
-    Label nom ;
-    Container f1 ;
+    Label nom;
+    Container f1;
     private Resources theme;
     EncodedImage enc;
-   
+
     public AffichageEtablissement() {
-        
+
         form = new Form();
         f1 = new Container(BoxLayout.y());
         lb = new SpanLabel("");
         nom = new Label("");
-        
-        
-        
+
         form.add(lb);
         form.add(f1);
-        EtablissementService serviceetab=new EtablissementService();
-        java.util.List<Etablissement>   l =  serviceetab.getList2() ;
+        EtablissementService serviceetab = new EtablissementService();
+        java.util.List<Etablissement> l = serviceetab.getList2();
         System.out.println(l.toString());
         for (Etablissement e : serviceetab.getList2()) {
-           nom.setText(e.getNom());  
-           
-            MultiButton mb = new MultiButton(e.getNom());
-            mb.setTextLine2(e.getType());
-           
-            
-            theme = UIManager.initFirstTheme("/theme");
-            enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-            Image i = URLImage.createToStorage(enc,e.getNom(), "http://localhost/allforkids/web/uploads/images/" + e.getImage(), URLImage.RESIZE_SCALE);
-            
-            mb.setIcon(i);
-            
-            mb.addActionListener((al)->{
-            DetailEtablissement a = new DetailEtablissement(e.getId_etablissement());
-           
-            a.getF().show();
-        });
-            
-            
-            form.add(mb);
-            
-         
+            if (serviceetab.getRoles(Session.getId()).equals("[ROLE_RESPONSABLE]")) {
+                if (e.getId_user() == Session.getId()) {
+                    nom.setText(e.getNom());
+
+                    MultiButton mb = new MultiButton(e.getNom());
+                    mb.setTextLine2(e.getType());
+
+                    theme = UIManager.initFirstTheme("/theme");
+                    enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                    Image i = URLImage.createToStorage(enc, System.currentTimeMillis()+e.getNom(), "http://localhost/allforkids/web/uploads/images/" + e.getImage(), URLImage.RESIZE_SCALE);
+
+                    mb.setIcon(i);
+
+                    mb.addActionListener((al) -> {
+                        DetailEtablissement a = new DetailEtablissement(e.getId_etablissement());
+
+                        a.getF().show();
+                    });
+
+                    form.add(mb);
+
+                }
+
+            } else {
+                if (e.getVerification().equals("Valide")) {
+                    nom.setText(e.getNom());
+
+                    MultiButton mb = new MultiButton(e.getNom());
+                    mb.setTextLine2(e.getType());
+
+                    theme = UIManager.initFirstTheme("/theme");
+                    enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                    Image i = URLImage.createToStorage(enc, e.getNom(), "http://localhost/allforkids/web/uploads/images/" + e.getImage(), URLImage.RESIZE_SCALE);
+
+                    mb.setIcon(i);
+
+                    mb.addActionListener((al) -> {
+                        DetailEtablissement a = new DetailEtablissement(e.getId_etablissement());
+
+                        a.getF().show();
+                    });
+
+                    form.add(mb);
+
+                }
+
+            }
+
         }
-       
-       
-          form.getToolbar().addCommandToRightBar("back", null, (et)->{HomeForm h=new HomeForm();
-          h.getF().show();
-          });
+
+        form.getToolbar().addCommandToRightBar("back", null, (et) -> {
+            HomeForm h = new HomeForm();
+            h.getF().show();
+        });
+        System.out.println("dfbgfdgdhgtedrggdrgedrgdrgr" + serviceetab.getRoles(1));
     }
 
     public Form getForm() {
