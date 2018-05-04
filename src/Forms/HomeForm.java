@@ -24,7 +24,7 @@ public class HomeForm {
    
 
 
-    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser,btnmytransport;
+    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser,btnmytransport,btnmyrejoindre;
 
     Button btntof,mail,inscrit;
 
@@ -49,6 +49,7 @@ public class HomeForm {
         btnajoutcov = new Button("ajouterCovoiturage");
         btnaffcov=new Button("Affichagecovoiturage");
         btnmytransport=new Button("btnmytransport");
+        btnmyrejoindre=new Button("btnmyrejoindre");
 
         btnlogin=new Button("Login");
         btnsingin=new Button("SingIn");
@@ -83,6 +84,7 @@ ModifierUser i = new ModifierUser();
         f.add(btnajoutcov);
         f.add(btnaffcov);
         f.add(btnmytransport);
+        f.add(btnmyrejoindre);
         
         f.add(btnajoutetab);
         f.add(btnaffetab);
@@ -134,6 +136,16 @@ ModifierUser i = new ModifierUser();
         MyTransport a = null ;
             try {
                 a = new MyTransport();
+            } catch (IOException ex) {
+                System.out.println("exception");
+            }
+        a.getForm().show();
+        });
+        
+        btnmyrejoindre.addActionListener((e)->{
+        MyRejoindre a = null ;
+            try {
+                a = new MyRejoindre();
             } catch (IOException ex) {
                 System.out.println("exception");
             }
