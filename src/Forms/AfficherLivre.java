@@ -5,98 +5,72 @@
  */
 package Forms;
 
-import Entity.Evenement;
-import Services.EvenementService;
-import com.codename1.components.ImageViewer;
+import Entity.Livre;
+import Services.LivreService;
 import com.codename1.components.MultiButton;
 import com.codename1.components.SpanLabel;
-import com.codename1.l10n.ParseException;
-import com.codename1.l10n.SimpleDateFormat;
-import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.List;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
-import java.io.IOException;
 import java.util.Date;
-
 
 /**
  *
  * @author slim
  */
-public class AffichageEvenement {
-
-    Form f;
+public class AfficherLivre {
+     Form f;
     SpanLabel lb;
     Label nom;
     Container f1;
     private Resources theme;
     EncodedImage enc;
 
-    public AffichageEvenement() throws IOException {
-      
-       
-        f = new Form("List Evenement");
+    public AfficherLivre() {
+         f = new Form("List Livre");
         f1 = new Container(BoxLayout.y());
         lb = new SpanLabel("");
         nom = new Label("");
         
         f.add(lb);
         f.add(f1);
-        EvenementService serviceevent = new EvenementService();
-        java.util.List<Evenement> l = serviceevent.getList2();
-        for (Evenement e : serviceevent.getList2()) {
-           
-           
-            nom.setText(e.getNom());
- 
-           MultiButton mb = new MultiButton(e.getNom());
-            mb.setTextLine2(e.getDate()+"   "+e.getTemp());
-           
-            theme = UIManager.initFirstTheme("/theme");
+        LivreService ls = new LivreService();
+         java.util.List<Livre> l = ls.getList2();
+          for (Livre e : ls.getList2()) {
+           nom.setText(e.getNom());
+             MultiButton mb = new MultiButton(e.getNom());
+              mb.setTextLine2(e.getCategorie()+" "+e.getType());
+               theme = UIManager.initFirstTheme("/theme");
             enc = EncodedImage.createFromImage(theme.getImage("round.png"), false);
             Date hash = new Date();
+              System.out.println(e.getPhoto());
             Image i = URLImage.createToStorage(enc,System.currentTimeMillis()+hash.toString(), "http://localhost/allforkids/web/uploads/images/" + e.getPhoto(), URLImage.RESIZE_SCALE);
-
-            mb.setIcon(i);
-            mb.addActionListener((al)->{
-            DetailEvenement a = new DetailEvenement(e);
+  mb.addActionListener((al)->{
+            DetailLivre a = new DetailLivre(e);
            
             a.getF().show();
         });
-           
-
-  
-
-            f1.add(mb);
-             
-          
-            
-            }
-        
-
-        f.getToolbar().addCommandToRightBar("back", null, (ev) -> {
+            mb.setIcon(i);
+           f.getToolbar().addCommandToRightBar("back", null, (ev) -> {
             HomeForm h = new HomeForm();
-            h.getF().show();
-        });
-         f.getToolbar().addCommandToRightBar("Ajout", null, (ev) -> {
-            AjoutEvenement h = new AjoutEvenement();
             h.getF().show();    
         });
+           f.add(mb);
+          }
     }
-
-    public Form getF() {
+     public Form getF() {
         return f;
     }
 
     public void setF(Form f) {
         this.f = f;
     }
+    
+    
 }
