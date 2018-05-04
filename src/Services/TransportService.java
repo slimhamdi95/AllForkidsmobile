@@ -136,5 +136,25 @@ public class TransportService {
             String str = new String(con.getResponseData());
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-    } 
+    }
+    
+    public void joindreTransport(int id,int iduser) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/allforkids/web/app_dev.php/transport/joindreMobile/"+id+"/"+iduser;
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
+    public void DeleteTransport(int id) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/allforkids/web/app_dev.php/transport/deleteMobile/"+id;
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
 }

@@ -114,6 +114,14 @@ public class Transport {
 
     }
 
+    public Transport(String description, String telephone,String place, String frais,String type) {
+        this.description = description;
+        this.telephone = telephone;
+        this.place = place;
+        this.frais = frais;
+        this.type = type;
+    }
+
     public void setId_user(int id_user) {
         this.id_user = id_user;
     }
