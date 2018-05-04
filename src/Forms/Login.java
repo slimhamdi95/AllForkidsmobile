@@ -23,6 +23,7 @@ import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
 
 /**
  *
@@ -40,7 +41,7 @@ public class Login {
 
     public Login() {
 
-        f = new Form();
+        f = new Form("LogIn", BoxLayout.y());
         f1 = new Container();
         lb = new Label("login");
         nom = new Label("pass");

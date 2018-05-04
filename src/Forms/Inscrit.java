@@ -45,7 +45,7 @@ public class Inscrit {
 
     TextField date, Username, nom, prenom, role, email, cin, password, passwordVerif;
 
-    Button valider, vider, pic, camaera;
+    Button valider, vider, pic, camaera,Logout;
 
     public Inscrit() {
 
@@ -67,7 +67,7 @@ public class Inscrit {
         stringPicker.setSelectedString("Parent");
         datePicker.setDate(new Date());
         valider = new Button("valider");
-        
+        Logout =new Button("Logout");
         pic.addActionListener((ActionEvent e) -> {
             Display.getInstance().openImageGallery(new ActionListener() {
                 public void actionPerformed(ActionEvent ev) {
@@ -101,7 +101,12 @@ public class Inscrit {
             Capture.capturePhoto(Display.getInstance().getDisplayWidth(), -1);
 
         });
-      
+         Logout.addActionListener((ActionEvent e) -> {
+          Login hi = new Login();
+            hi.getF().show();
+
+        });
+      f.add(Logout);
         f.add(Username);
         f.add(nom);
         f.add(datePicker);    
