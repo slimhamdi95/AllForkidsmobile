@@ -5,6 +5,7 @@
  */
 package Forms;
 
+import Entity.Session;
 import Entity.Transport;
 import Services.TransportService;
 import com.codename1.components.SpanLabel;
@@ -12,6 +13,9 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextArea;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import static com.codename1.ui.layouts.BoxLayout.Y_AXIS;
 import java.io.IOException;
@@ -66,7 +70,7 @@ public class DetailsTransport {
         form.add(Rejoindre);
         
         Button Annuler = new Button("Annuler le offre");
-        if (transport.getId_user()== 9){
+        if (transport.getId_user()== 9){             //*****************
         form.add(Annuler);
         }
         
@@ -82,9 +86,22 @@ public class DetailsTransport {
             }
             a.getForm().show();
           }
-       });
+        });
         
-        
+        Rejoindre.addActionListener((al)->{
+        boolean df =  Dialog.show("Rejoindre","Vous les vous vraiment rejoindre L'offre ?","Oui","Non");
+          if(df){
+            service.joindreTransport(id,13);           //**************
+            ShowTransport a = null;
+            try {
+                a = new ShowTransport();
+            } catch (IOException ex) {
+                    System.out.println("something went wrong");
+            }
+            a.getForm().show();
+          }
+        });
+
     }
     
     public Form getForm() {

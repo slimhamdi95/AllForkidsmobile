@@ -5,15 +5,11 @@
  */
 package Forms;
 
-import Entity.Evenement;
-import Services.EvenementService;
-import com.codename1.capture.Capture;
 import com.codename1.messaging.Message;
 
 import com.codename1.ui.Button;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
-import com.codename1.ui.TextField;
 import java.io.IOException;
 
 
@@ -28,7 +24,7 @@ public class HomeForm {
    
 
 
-    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser;
+    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser,MyTransport;
 
     Button btntof,mail,inscrit;
 
@@ -132,11 +128,23 @@ ModifierUser i = new ModifierUser();
         a.getForm().show();
         });
         
+        MyTransport.addActionListener((e)->{
+        MyTransport a = null ;
+            try {
+                a = new MyTransport();
+            } catch (IOException ex) {
+                System.out.println("exception");
+            }
+        a.getForm().show();
+        });
+        
         btnajoutcov.addActionListener((e)->{
         ajoutTransport a = null ;
         a = new ajoutTransport();
         a.getForm().show();
         });
+        
+
 
         btnsingin.addActionListener((e) -> {
             Inscrit i = new Inscrit();
