@@ -24,7 +24,7 @@ public class HomeForm {
    
 
 
-    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser,MyTransport;
+    Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser,btnmytransport;
 
     Button btntof,mail,inscrit;
 
@@ -48,6 +48,7 @@ public class HomeForm {
         
         btnajoutcov = new Button("ajouterCovoiturage");
         btnaffcov=new Button("Affichagecovoiturage");
+        btnmytransport=new Button("btnmytransport");
 
         btnlogin=new Button("Login");
         btnsingin=new Button("SingIn");
@@ -81,6 +82,7 @@ ModifierUser i = new ModifierUser();
         });
         f.add(btnajoutcov);
         f.add(btnaffcov);
+        f.add(btnmytransport);
         
         f.add(btnajoutetab);
         f.add(btnaffetab);
@@ -128,7 +130,7 @@ ModifierUser i = new ModifierUser();
         a.getForm().show();
         });
         
-        MyTransport.addActionListener((e)->{
+        btnmytransport.addActionListener((e)->{
         MyTransport a = null ;
             try {
                 a = new MyTransport();
