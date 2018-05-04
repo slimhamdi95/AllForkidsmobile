@@ -158,4 +158,20 @@ public class TransportService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
+    
+    ArrayList<Transport> listTransportRejoindre = new ArrayList<>();
+    
+    public ArrayList<Transport> getTransportRejoindreList(int iduser) {
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/allforkids/web/app_dev.php/transport/MyrejoindreMobile/"+iduser);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                TransportService service = new TransportService();
+                listTransportRejoindre = service.getTransport(new String(con.getResponseData()));
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return listTransportRejoindre;
+    }
 }
