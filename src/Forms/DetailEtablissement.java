@@ -98,25 +98,14 @@ btnrejoindre = new Button("Rejoindre");
         btndelete.addActionListener((ActionEvent e) -> {
             EtablissementService ser = new EtablissementService();
             ser.deleteEtablissement(id);
-            Dialog d = new Dialog("Succes!");
-            TextArea popupBody = new TextArea("Etablissement Supprimer avec succes", 3, 10);
-            popupBody.setUIID("PopupBody");
-            popupBody.setEditable(false);
-            Button ok = new Button("OK");
-
-            ok.addActionListener((ActionEvent ee) -> {
-                AffichageEtablissement a = null;
-
-                a = new AffichageEtablissement();
-                System.out.println("erreuur");
-                a.getForm().show();
-            });
-            d.setLayout(new BorderLayout());
-            d.addComponent(BorderLayout.SOUTH, ok);
-            d.add(BorderLayout.CENTER, popupBody);
-            d.show();
+            
+            AffichageEtablissement a=null;
+            a=new AffichageEtablissement();
+            a.getForm().show();
+            
 
         });
+        
 
         btnupdate = new Button("Modifier");
 
@@ -127,16 +116,24 @@ btnrejoindre = new Button("Rejoindre");
         btnrejoindre.addActionListener((ActionEvent e) -> {
              es.addEtablissementRejoundre(id, Session.getId());
              ///Mail
-              Message m = new Message("L'éléve"+Session.getUsername()+"veut rejoindre votre établissemant");
+             //String nom_msg=Session.getUsername();
+              Message m = new Message("vous venez de recevoir une nouvelle demande de rejoindre");
              m.setMimeType(Message.MIME_HTML);
         Display.getInstance().sendMessage(new String[] {es.getMail(es.afficheDetail(id).getId_user())}, "Demande de rejoindre", m);
+        
+            DetailEtablissement a = new DetailEtablissement(id);
+            a.getF().showBack();
         });
-        if ((es.getRoles(Session.getId()).equals("[ROLE_RESPONSABLE]")) && (es.afficheDetail(id).getId_user() == Session.getId())) {
+        if ((es.getRoles(Session.getId()).equals("[ROLE_RESPONSABLE, ROLE_USER]")) && (es.afficheDetail(id).getId_user() == Session.getId())) {
             f.add(btndelete);
             f.add(btnupdate);
         }
-        if(es.getRoles(Session.getId()).equals("[ROLE_ELEVE]")){
-            f.add(btnrejoindre);
+       // System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+es.getNbrej(id, Session.getId()));
+        if(es.getRoles(Session.getId()).equals("[ROLE_ELEVE, ROLE_USER]")){
+           //if(es.getNbrej(id,Session.getId())==0){
+                 f.add(btnrejoindre);
+           // }
+           
         }
 
     }
