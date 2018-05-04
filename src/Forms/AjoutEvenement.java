@@ -87,8 +87,8 @@ public class AjoutEvenement {
          * **google Map*********
          */
          Coord crd = new Coord(36.862499, 10.195556);
-        map.setCameraPosition(crd);
-        map.zoom(crd, 8);
+       
+       
         Button btnMoveCamera = new Button("Déplacer Caméra");
         btnMoveCamera.addActionListener(e -> {
             map.setCameraPosition(new Coord(36.862499, 10.195556));
@@ -97,14 +97,14 @@ public class AjoutEvenement {
         s.setFgColor(0xff0000);
         s.setBgTransparency(0);
         FontImage markerImg = FontImage.createMaterial(FontImage.MATERIAL_PLACE, s, Display.getInstance().convertToPixels(3));
-
+ map.setCameraPosition(crd);
         map.addTapListener(e -> {
             map.clearMapLayers();
 
             Coord c = map.getCoordAtPosition(e.getX(), e.getY());
             lat = c.getLatitude();
             lng = c.getLongitude();
-            System.out.println(lat + " " + lng);
+            
             map.addMarker(
                     EncodedImage.createFromImage(markerImg, false),
                     map.getCoordAtPosition(e.getX(), e.getY()),
@@ -135,7 +135,7 @@ public class AjoutEvenement {
                 public void actionPerformed(ActionEvent ev) {
                     if (ev != null && ev.getSource() != null) {
                         String filePath = (String) ev.getSource();
-                        f.add(filePath);
+                       
                         try {
 
                             MultipartRequest cr = new MultipartRequest();
@@ -162,6 +162,7 @@ public class AjoutEvenement {
         /**
          * **********
          */
+       
         f.add(tnom);
         f.add(tdescription);
         f.add(nb);
@@ -171,7 +172,8 @@ public class AjoutEvenement {
         f.add(btnimage);
         f.add(root);
         f.add(btnajout);
-
+         map.setCameraPosition(crd);
+ map.zoom(crd, 8);
         btnajout.addActionListener((ActionEvent e) -> {
              EvenementService ser = new EvenementService();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
@@ -184,7 +186,7 @@ public class AjoutEvenement {
            
             if(validation( ev)){
             ser.addEvenement(ev);
-            Dialog d = new Dialog("Succes!");
+            Dialog dailog = new Dialog("Succes!");
             TextArea popupBody = new TextArea("Evenement Ajouter avec succes", 3, 10);
             popupBody.setUIID("PopupBody");
             popupBody.setEditable(false);
@@ -199,10 +201,10 @@ public class AjoutEvenement {
                 }
                 a.getF().show();
             });
-            d.setLayout(new BorderLayout());
-            d.addComponent(BorderLayout.SOUTH, ok);
-            d.add(BorderLayout.CENTER, popupBody);
-            d.show();
+            dailog.setLayout(new BorderLayout());
+            dailog.addComponent(BorderLayout.SOUTH, ok);
+            dailog.add(BorderLayout.CENTER, popupBody);
+            dailog.show();
             }
            
         });
@@ -215,6 +217,7 @@ public class AjoutEvenement {
             }
             h.getF().show();
         });
+         map.setCameraPosition(crd);
     }
 
     public Form getF() {

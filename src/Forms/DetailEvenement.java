@@ -81,12 +81,14 @@ public class DetailEvenement {
          */
         System.out.println("lat:"+evenement.getLatitude()+"lng"+evenement.getLongitude());
         Coord crd = new Coord(evenement.getLatitude(), evenement.getLongitude());
-        map.setCameraPosition( new Coord(evenement.getLatitude(), evenement.getLongitude()));
+      
+       
         map.zoom(crd, 12);
  Button btnMoveCamera = new Button("Déplacer Caméra");
         btnMoveCamera.addActionListener(e -> {
             map.setCameraPosition(crd);
         });
+          map.setCameraPosition(crd);
         Style s = new Style();
         s.setFgColor(0xff0000);
         s.setBgTransparency(0);
@@ -104,9 +106,10 @@ public class DetailEvenement {
 Container root = LayeredLayout.encloseIn(
                 BorderLayout.center(map),
                 BorderLayout.south(
-                        FlowLayout.encloseBottom(btnMoveCamera)
+                FlowLayout.encloseBottom(btnMoveCamera)
                 )
         );
+       
         /**
          * ******************
          */
@@ -132,7 +135,7 @@ Container root = LayeredLayout.encloseIn(
         }
        participe.addActionListener((al)->{
           es.addEvenementParticipent(id, Session.getId());
-          Dialog d = new Dialog("Succes!");
+          Dialog dailog = new Dialog("Succes!");
             TextArea popupBody = new TextArea("vous êtes inscrit ", 3, 10);
             popupBody.setUIID("PopupBody");
             popupBody.setEditable(false);
@@ -143,10 +146,10 @@ Container root = LayeredLayout.encloseIn(
             a.getF().show();
             });
     
-            d.setLayout(new BorderLayout());
-            d.addComponent(BorderLayout.SOUTH, ok);
-            d.add(BorderLayout.CENTER, popupBody);
-            d.show();
+            dailog.setLayout(new BorderLayout());
+            dailog.addComponent(BorderLayout.SOUTH, ok);
+            dailog.add(BorderLayout.CENTER, popupBody);
+            dailog.show();
        
        });
         anull.addActionListener((al)->{
@@ -188,6 +191,7 @@ Container root = LayeredLayout.encloseIn(
             }
             h.getF().show();
         });
+         map.setCameraPosition(crd);
     }
 
     public Form getF() {

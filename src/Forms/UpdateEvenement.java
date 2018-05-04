@@ -90,14 +90,15 @@ public class UpdateEvenement {
         stringPicker.setType(Display.PICKER_TYPE_STRINGS);
         stringPicker.setStrings("musique", "cinema", "theatre", "randonnée",
                 "magicien", "Parck");
-        stringPicker.setSelectedString(ev.getType());
+      
         btnajout = new Button("Modifier");
         /**
          * **google Map*********
          */
         Coord crd = new Coord(lat, lng);
-        map.setCameraPosition(crd);
-        map.zoom(crd, 12);
+      
+        
+        map.zoom(crd, 5);
         Button btnMoveCamera = new Button("Déplacer Caméra");
         btnMoveCamera.addActionListener(e -> {
             map.setCameraPosition(new Coord(36.862499, 10.195556));
@@ -106,9 +107,10 @@ public class UpdateEvenement {
         s.setFgColor(0xff0000);
         s.setBgTransparency(0);
         FontImage markerImg = FontImage.createMaterial(FontImage.MATERIAL_PLACE, s, Display.getInstance().convertToPixels(3));
+          map.setCameraPosition(crd);
         map.addMarker(
                 EncodedImage.createFromImage(markerImg, false),
-                new Coord(ev.getLatitude(), ev.getLongitude()),
+                new Coord(lat, lng),
                 "Emplacement",
                 "Optional long description",
                 evt -> {
@@ -152,7 +154,7 @@ public class UpdateEvenement {
                 public void actionPerformed(ActionEvent ev) {
                     if (ev != null && ev.getSource() != null) {
                         String filePath = (String) ev.getSource();
-                        f.add(filePath);
+                   
                         try {
                            
                             MultipartRequest cr = new MultipartRequest();
@@ -188,6 +190,8 @@ public class UpdateEvenement {
         f.add(btnimage);
         f.add(root);
         f.add(btnajout);
+        System.out.println(ev.getType());
+          stringPicker.setSelectedString(ev.getType());
          btnajout.addActionListener((ActionEvent e) -> {
              EvenementService ser = new EvenementService();
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -223,6 +227,7 @@ public class UpdateEvenement {
             }
            
         });
+           map.setCameraPosition(crd);
     }
 
     public Form getF() {
