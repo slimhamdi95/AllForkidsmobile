@@ -29,6 +29,8 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BoxLayout;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -93,6 +95,56 @@ public class LoginService  {
        return e ;
 
     }
+    public ArrayList<UserE> getListUser(String json) {
+
+        ArrayList<UserE> listUsers = new ArrayList<>();
+
+        try {
+            System.out.println(json);
+            JSONParser j = new JSONParser();
+
+            Map<String, Object> users = j.parseJSON(new CharArrayReader(json.toCharArray()));
+            System.out.println(users);
+           
+            List<Map<String, Object>> list = (List<Map<String, Object>>) users.get("root");
+
+            for (Map<String, Object> obj : list) {
+                UserE u = new UserE();
+
+              
+             
+                //e.setId(Integer.parseInt(obj.get("id").toString().trim()));
+                u.setUsername(obj.get("username").toString());
+               // e.setNom(obj.get("name").toString());
+                System.out.println(u);
+                listUsers.add(u);
+
+            }
+
+        } catch (IOException ex) {
+        }
+        System.out.println(listUsers);
+        return listUsers;
+
+    }
+    
+    
+    ArrayList<UserE> listUsers = new ArrayList<>();
+    
+    public ArrayList<UserE> getList2(){       
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/allforkids/web/app_dev.php/ent/AllUser");  
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                LoginService ser = new LoginService();
+                listUsers= ser.getListUser(new String(con.getResponseData()));
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return listUsers;
+    }
+
       
       
       
