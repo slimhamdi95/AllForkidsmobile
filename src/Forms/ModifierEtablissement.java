@@ -52,6 +52,7 @@ public class ModifierEtablissement {
         tnom = new TextField(et.getNom(),"Nom");
         tdescription = new TextField(et.getDescription(),"Descripption");
         
+       
         
         btnimage = new Button("Image");
        
@@ -182,6 +183,14 @@ public class ModifierEtablissement {
             d.add(BorderLayout.CENTER, popupBody);
             d.show();
             });
+        
+         f.getToolbar().addCommandToRightBar("back", null, (ets) -> {
+            DetailEtablissement a = null;
+                
+                    a = new DetailEtablissement(et.getId_etablissement());
+                
+                a.getF().show();
+        });
         
     }
  

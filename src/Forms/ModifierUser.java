@@ -92,6 +92,10 @@ public class ModifierUser {
         f.add(cin);
         f.add(valider);
 
+        
+   
+        
+        
         valider.addActionListener((e) -> {
             LoginService s = new LoginService();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

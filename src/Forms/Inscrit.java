@@ -45,7 +45,7 @@ public class Inscrit {
 
     TextField date, Username, nom, prenom, role, email, cin, password, passwordVerif;
 
-    Button valider, vider, pic, camaera;
+    Button valider, vider, pic, camaera,Logout;
 
     public Inscrit() {
 
@@ -67,7 +67,7 @@ public class Inscrit {
         stringPicker.setSelectedString("Parent");
         datePicker.setDate(new Date());
         valider = new Button("valider");
-        
+        Logout =new Button("Logout");
         pic.addActionListener((ActionEvent e) -> {
             Display.getInstance().openImageGallery(new ActionListener() {
                 public void actionPerformed(ActionEvent ev) {
@@ -101,7 +101,12 @@ public class Inscrit {
             Capture.capturePhoto(Display.getInstance().getDisplayWidth(), -1);
 
         });
-      
+         Logout.addActionListener((ActionEvent e) -> {
+          Login hi = new Login();
+            hi.getF().show();
+
+        });
+      f.add(Logout);
         f.add(Username);
         f.add(nom);
         f.add(datePicker);    
@@ -113,7 +118,7 @@ public class Inscrit {
         f.add(cin);      
         f.add(password);
         f.add(passwordVerif);
-        f.add(vider);      
+            
         f.add(valider);
 
         valider.addActionListener((e) -> {
@@ -126,6 +131,19 @@ public class Inscrit {
             if (validation(u)) {
 
                 s.Inscrit(u);
+                dd = new Dialog("succus");
+                    TextArea popupBody = new TextArea("succus!!!");
+                    popupBody.setUIID("PopupBody");
+                    popupBody.setEditable(false);
+                    Button close = new Button("OK");
+            }else 
+            {
+            
+            dd = new Dialog("Erreur");
+                    TextArea popupBody = new TextArea("Le user n'existe pas !", 3, 10);
+                    popupBody.setUIID("PopupBody");
+                    popupBody.setEditable(false);
+                    Button close = new Button("OK");
             }
         });
 
@@ -183,7 +201,7 @@ public class Inscrit {
         if (!(password.getText().equals(passwordVerif.getText()))) {
 
             dd = new Dialog("Erreur");
-            TextArea popupBody = new TextArea("vous devez ajouter une image !", 3, 10);
+            TextArea popupBody = new TextArea("verifier votre mot de passe  !", 3, 10);
             popupBody.setUIID("PopupBody");
             popupBody.setEditable(false);
             Button close = new Button("OK");

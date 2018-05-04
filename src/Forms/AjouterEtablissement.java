@@ -64,6 +64,10 @@ public class AjouterEtablissement {
         tnom = new TextField("","Nom");
         tdescription = new TextField("","Description");
         
+        f.getToolbar().addCommandToRightBar("back", null, (et) -> {
+            AffichageEtablissement h = new AffichageEtablissement();
+            h.getForm().show();
+        });
         
         btnimage = new Button("Image");
        
