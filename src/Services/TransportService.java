@@ -125,11 +125,11 @@ public class TransportService {
         return  Transport ;
     }
     
-    private static int userId = 9;
     public void addTransport (Transport transport){
         ConnectionRequest con = new ConnectionRequest();
+        System.out.println(transport);
         String Url = "http://localhost/Allforkids/web/app_dev.php/transport/newMobile/"
-                  +userId+ "/" + transport.getDescription()+ "/" 
+                  +9+ "/" + transport.getDescription()+ "/" 
                    +transport.getTelephone()+ "/"+transport.getPlace()+"/"+transport.getFrais()
                    + "/" +transport.getType();
         con.setUrl(Url);
@@ -174,4 +174,5 @@ public class TransportService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listTransportRejoindre;
     }
+
 }

@@ -65,7 +65,7 @@ public class ajoutTransport {
     
     valider.addActionListener((ActionEvent e) -> {
             TransportService service = new TransportService();
-            Transport transport = new Transport(description.getText(),telephone.getText(),place.getText(),frais.getText(),frais.getText());
+            Transport transport = new Transport(description.getText(),telephone.getText(),place.getText(),frais.getText(),"occasionnellement");
             service.addTransport(transport);
             Dialog d = new Dialog("Succes!");
             TextArea popupBody = new TextArea("votre offre est valider");

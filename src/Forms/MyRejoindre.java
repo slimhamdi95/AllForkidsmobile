@@ -40,7 +40,7 @@ public class MyRejoindre {
         System.out.println(listRejoindre.toString());
         System.out.println("hello2");
         
-        for (Transport t : serviceTransport.getTransportRejoindreList(9)) {
+        for (Transport t : serviceTransport.getTransportRejoindreList(13)) {
             MultiButton mb = new MultiButton(t.getDepartName());
             mb.setTextLine2(t.getArriveName());
             mb.addActionListener((al)->{

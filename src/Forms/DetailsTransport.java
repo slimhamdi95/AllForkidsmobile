@@ -67,11 +67,19 @@ public class DetailsTransport {
           });
         
         Button Rejoindre = new Button("Rejoindre");
-        form.add(Rejoindre);
-        
         Button Annuler = new Button("Annuler le offre");
+        Button Full = new Button("pas de place !!!");
+        Button Update = new Button("update");
+        
         if (transport.getId_user()== 9){             //*****************
         form.add(Annuler);
+        form.add(Update);
+        }else {
+            if ( Integer.parseInt(transport.getPlace()) == 0 ){
+            form.add(Full);
+            } else {
+                form.add(Rejoindre);
+            }
         }
         
         Annuler.addActionListener((al)->{
@@ -89,6 +97,13 @@ public class DetailsTransport {
         });
         
         Rejoindre.addActionListener((al)->{
+            int place ;
+            place = Integer.parseInt(transport.getPlace());
+            place = place -1 ;
+            String nbrplace;
+            nbrplace = String.valueOf(place);
+            System.out.println(nbrplace);
+            transport.setPlace(nbrplace);
         boolean df =  Dialog.show("Rejoindre","Vous les vous vraiment rejoindre L'offre ?","Oui","Non");
           if(df){
             service.joindreTransport(id,13);           //**************
