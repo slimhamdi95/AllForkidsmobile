@@ -30,7 +30,7 @@ public class HomeForm {
 
     Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser;
 
-    Button btntof,mail;
+    Button btntof,mail,inscrit;
 
    // Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab;
 
@@ -44,7 +44,7 @@ public class HomeForm {
         btntof = new Button("photo");
         btnaff=new Button("Affichage");
 
-        btnajout = new Button("ajouterEvenet");
+        btnajout = new Button("AfficherLivre");
         btnaff=new Button("AffichageEvent");
        
         btnajoutetab = new Button("ajouterEtab");
@@ -56,6 +56,7 @@ public class HomeForm {
         btnlogin=new Button("Login");
         btnsingin=new Button("SingIn");
         mail=new Button("mail");
+        
         modifierUser=new Button("modifierUser");
 
         f.add(btnajout);
@@ -101,7 +102,8 @@ ModifierUser i = new ModifierUser();
         
         
         btnajout.addActionListener((e) -> {
-           
+            AfficherLivre a=new AfficherLivre();
+                  a.getF().show();
         });
         
         

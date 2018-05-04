@@ -86,9 +86,9 @@ public class AjoutEvenement {
         /**
          * **google Map*********
          */
-        Coord crd = new Coord(36.862499, 10.195556);
+         Coord crd = new Coord(36.862499, 10.195556);
         map.setCameraPosition(crd);
-        map.zoom(crd, 12);
+        map.zoom(crd, 8);
         Button btnMoveCamera = new Button("Déplacer Caméra");
         btnMoveCamera.addActionListener(e -> {
             map.setCameraPosition(new Coord(36.862499, 10.195556));
@@ -144,7 +144,7 @@ public class AjoutEvenement {
                             String mime = "image/png";
                             cr.addData("file", filePath, mime);
                             Date hash = new Date();
-                            fichernom = System.currentTimeMillis()+hash.toString()+ ".png";
+                            fichernom = System.currentTimeMillis()+ ".png";
                             cr.setFilename("file", fichernom);
 
                             InfiniteProgress prog = new InfiniteProgress();
