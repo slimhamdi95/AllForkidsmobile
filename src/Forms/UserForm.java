@@ -90,10 +90,8 @@ public class UserForm extends com.codename1.ui.Form {
             form.add(buttonLogin);
             
             form.revalidate();
-            //form.show();
         } catch (IOException ex) {
             ex.printStackTrace();
-            //Logger.getLogger(MyApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -155,16 +153,14 @@ public class UserForm extends com.codename1.ui.Form {
     }
     
     private void facebookLogin(UserForm form) {
-        //use your own facebook app identifiers here   
-        //These are used for the Oauth2 web login process on the Simulator.
-        String clientId = "198674657528042";
-        String redirectURI = "http://facebook.com/"; //Una URI cualquiera. Si la pones en tu equipo debes crear un Servidor Web. Yo usé XAMPP
-        String clientSecret = "3971c655e7705a6a33a05d97f71827c7";
+        
+        String clientId = "2052003465017974";
+        String redirectURI = "http://localhost/allforkids/web/app_dev.php/"; 
+        String clientSecret = "948b65bfb4de8c5eab45a2f56d598011";
         Login fb = FacebookConnect.getInstance();
         fb.setClientId(clientId);
         fb.setRedirectURI(redirectURI);
         fb.setClientSecret(clientSecret);
-        //Sets a LoginCallback listener
         fb.setCallback(new LoginCallback() {
             @Override
             public void loginFailed(String errorMessage) {
@@ -182,11 +178,9 @@ public class UserForm extends com.codename1.ui.Form {
             }
             
         });
-        //trigger the login if not already logged in
         if(!fb.isUserLoggedIn()){
             fb.doLogin();
         }else{
-            //get the token and now you can query the facebook API
             String token = fb.getAccessToken().getToken();
             Storage.getInstance().writeObject("token", token);
             showIfLoggedIn(form);

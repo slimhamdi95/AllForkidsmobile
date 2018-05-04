@@ -30,7 +30,7 @@ public class HomeForm {
 
     Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab,btnlogin,btnsingin,modifierUser;
 
-    Button btntof,mail;
+    Button btntof,mail,inscrit;
 
    // Button btnajout,btnaff,btnajoutcov,btnaffcov,btnajoutetab,btnaffetab;
 
@@ -56,6 +56,7 @@ public class HomeForm {
         btnlogin=new Button("Login");
         btnsingin=new Button("SingIn");
         mail=new Button("mail");
+        
         modifierUser=new Button("modifierUser");
 
         f.add(btnajout);
