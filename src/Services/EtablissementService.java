@@ -7,6 +7,7 @@ package Services;
 
 import Entity.Etablissement;
 import Entity.Evenement;
+import Entity.Session;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -25,17 +26,32 @@ import java.util.Map;
  * @author FATNASSI
  */
 public class EtablissementService {
-    
+      String a ="";
     private ConnectionRequest connectionRequest;
     public static Form listeEtabs;
-    private static int userId = 11; //Session.getId();
+    private static int userId = Session.getId(); //Session.getId();
 
     public void addEtablissement(Etablissement etab) {
        ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/Allforkids/web/app_dev.php/Etab/new1/"
-                  +userId+ "/" + etab.getNom()+ "/" 
+                  +11+ "/" + etab.getNom()+ "/" 
                    +etab.getType()+ "/"+etab.getRegion()+"/"+etab.getVille()
                    + "/" +etab.getDescription()+ "/" +etab.getImage()+ "/"+"Non valide";
+        con.setUrl(Url);
+
+
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
+     public void addEtablissementRejoundre(int id_etab,int id_user) {
+       ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/Allforkids/web/app_dev.php/Etab/newrejoindre/"
+                  +id_etab+ "/" + id_user;
         con.setUrl(Url);
 
 
@@ -65,12 +81,16 @@ public class EtablissementService {
 
                 // System.out.println(obj.get("id"));
                 float idEtablissement = Float.parseFloat(obj.get("idEtablissement").toString());
-                System.out.println(idEtablissement);
                 e.setId_etablissement((int) idEtablissement);
-               
+                float idUser = Float.parseFloat(obj.get("idUser").toString());
+                e.setId_user((int) idUser);
                 e.setNom(obj.get("nom").toString());
                 e.setType(obj.get("type").toString());
-                e.setImage(obj.get("image").toString());;
+                e.setRegion(obj.get("region").toString());
+                e.setVille(obj.get("ville").toString());
+                e.setImage(obj.get("image").toString());
+                e.setDescription(obj.get("description").toString());
+                e.setVerification(obj.get("verification").toString());
                 System.out.println(e);
                 listEtab.add(e);
 
@@ -108,12 +128,14 @@ public class EtablissementService {
             public void actionPerformed(NetworkEvent evt) {
                 EtablissementService ser = new EtablissementService();
                  e.setId_etablissement(ser.getEtablissement2(new String(con.getResponseData())).getId_etablissement());
+                 e.setId_user(ser.getEtablissement2(new String(con.getResponseData())).getId_user());
                  e.setNom( ser.getEtablissement2(new String(con.getResponseData())).getNom());
                  e.setType(ser.getEtablissement2(new String(con.getResponseData())).getType());
                  e.setImage(ser.getEtablissement2(new String(con.getResponseData())).getImage());
                  e.setRegion(ser.getEtablissement2(new String(con.getResponseData())).getRegion());
                  e.setVille(ser.getEtablissement2(new String(con.getResponseData())).getVille());
                  e.setDescription(ser.getEtablissement2(new String(con.getResponseData())).getDescription());
+                 e.setVerification(ser.getEtablissement2(new String(con.getResponseData())).getVerification());
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
@@ -132,15 +154,16 @@ public class EtablissementService {
             System.out.println(events);
            
                 float idEtablissement = Float.parseFloat(events.get("idEtablissement").toString());
-                System.out.println(idEtablissement);
                 e.setId_etablissement((int) idEtablissement);
-               
+                float idUser = Float.parseFloat(events.get("idUser").toString());
+                e.setId_user((int) idUser);
                 e.setNom(events.get("nom").toString());
                 e.setType(events.get("type").toString());
-                e.setImage(events.get("image").toString());
                 e.setRegion(events.get("region").toString());
                 e.setVille(events.get("ville").toString());
+                e.setImage(events.get("image").toString());
                 e.setDescription(events.get("description").toString());
+                e.setVerification(events.get("verification").toString());
                  
             
             } catch (IOException ex) {
@@ -156,11 +179,92 @@ public class EtablissementService {
         con.setUrl(Url); 
 
 
-        con.removeResponseListener((e) -> {
+        con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());
             System.out.println(str);
 
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    public void UpdateEtablissement(Etablissement etab) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/Allforkids/web/app_dev.php/Etab/update1/"+etab.getId_etablissement()+"/"
+                  +Session.getId()+ "/" + etab.getNom()+ "/" 
+                   +etab.getType()+ "/"+etab.getRegion()+"/"+etab.getVille()
+                   + "/" +etab.getDescription()+ "/" +etab.getImage()+ "/"+etab.getVerification();
+        con.setUrl(Url);
+
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+     public String getRoles(int id){
+        
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/Allforkids/web/app_dev.php/Etab/getRole/"+id);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                 EtablissementService ser = new EtablissementService();
+                 a = ser.getRoles2(new String(con.getResponseData()));
+             
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        
+     return a ;
+    }
+     public String getRoles2(String json) {
+                
+         String  e = "" ;
+        try {
+            System.out.println(json);
+            JSONParser j = new JSONParser();
+            
+            Map<String, Object> obj = j.parseJSON(new CharArrayReader(json.toCharArray()));
+            
+          e = obj.get("roles").toString();
+             
+            
+        } catch (IOException ex) {
+        }
+        return e;
+        
+    }
+     public String getMail(int id){
+        
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/Allforkids/web/app_dev.php/Etab/getMail/"+id);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                 EtablissementService ser = new EtablissementService();
+                 a = ser.getMail2(new String(con.getResponseData()));
+             
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        
+     return a ;
+    }
+     public String getMail2(String json) {
+                
+         String  e = "" ;
+        try {
+            System.out.println(json);
+            JSONParser j = new JSONParser();
+            
+            Map<String, Object> obj = j.parseJSON(new CharArrayReader(json.toCharArray()));
+            
+          e = obj.get("mail").toString();
+             
+            
+        } catch (IOException ex) {
+        }
+        return e;
+        
     }
 }
