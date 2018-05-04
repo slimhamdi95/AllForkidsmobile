@@ -113,7 +113,7 @@ public class Inscrit {
         f.add(cin);      
         f.add(password);
         f.add(passwordVerif);
-        f.add(vider);      
+            
         f.add(valider);
 
         valider.addActionListener((e) -> {
@@ -126,6 +126,19 @@ public class Inscrit {
             if (validation(u)) {
 
                 s.Inscrit(u);
+                dd = new Dialog("succus");
+                    TextArea popupBody = new TextArea("succus!!!");
+                    popupBody.setUIID("PopupBody");
+                    popupBody.setEditable(false);
+                    Button close = new Button("OK");
+            }else 
+            {
+            
+            dd = new Dialog("Erreur");
+                    TextArea popupBody = new TextArea("Le user n'existe pas !", 3, 10);
+                    popupBody.setUIID("PopupBody");
+                    popupBody.setEditable(false);
+                    Button close = new Button("OK");
             }
         });
 
@@ -183,7 +196,7 @@ public class Inscrit {
         if (!(password.getText().equals(passwordVerif.getText()))) {
 
             dd = new Dialog("Erreur");
-            TextArea popupBody = new TextArea("vous devez ajouter une image !", 3, 10);
+            TextArea popupBody = new TextArea("verifier votre mot de passe  !", 3, 10);
             popupBody.setUIID("PopupBody");
             popupBody.setEditable(false);
             Button close = new Button("OK");
