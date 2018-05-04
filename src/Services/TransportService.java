@@ -118,6 +118,7 @@ public class TransportService {
                     Transport.setPlace(service.getTransportEntity(new String(con.getResponseData())).getPlace());
                     Transport.setFrais(service.getTransportEntity(new String(con.getResponseData())).getFrais());
                     Transport.setType(service.getTransportEntity(new String(con.getResponseData())).getType());
+                    Transport.setId_user(service.getTransportEntity(new String(con.getResponseData())).getId_user());
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
@@ -136,5 +137,41 @@ public class TransportService {
             String str = new String(con.getResponseData());
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-    } 
+    }
+    
+    public void joindreTransport(int id,int iduser) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/allforkids/web/app_dev.php/transport/joindreMobile/"+id+"/"+iduser;
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
+    public void DeleteTransport(int id) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/allforkids/web/app_dev.php/transport/deleteMobile/"+id;
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
+    ArrayList<Transport> listTransportRejoindre = new ArrayList<>();
+    
+    public ArrayList<Transport> getTransportRejoindreList(int iduser) {
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/allforkids/web/app_dev.php/transport/MyrejoindreMobile/"+iduser);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                TransportService service = new TransportService();
+                listTransportRejoindre = service.getTransport(new String(con.getResponseData()));
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return listTransportRejoindre;
+    }
 }
