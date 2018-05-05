@@ -8,6 +8,7 @@ package Forms;
 import Entity.Transport;
 import Services.TransportService;
 import com.codename1.components.SpanLabel;
+import com.codename1.ui.BrowserComponent;
 import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
@@ -28,6 +29,7 @@ public class DetailsTransport {
     TransportService service = new TransportService();
     
     public DetailsTransport(int id){
+        
         this.id = id ;
         Transport transport = new Transport();
         
@@ -40,6 +42,8 @@ public class DetailsTransport {
         transport.setFrais(service.getTransportDetails(id).getFrais());
         transport.setType(service.getTransportDetails(id).getType());
         transport.setId_user(service.getTransportDetails(id).getId_user());
+        transport.setDepart(service.getTransportDetails(id).getDepart());
+        transport.setArrivé(service.getTransportDetails(id).getArrivé());
         
         form = new Form("covoiturage",new BoxLayout(Y_AXIS));
         
@@ -58,6 +62,9 @@ public class DetailsTransport {
         form.add(new Label("type de covoiturage:"));
         form.add(new Label(transport.getType()));
         
+        System.out.println(transport.getDepart());
+        System.out.println(transport.getArrivé());
+        
         form.getToolbar().addCommandToRightBar("back", null, (ets) -> {
             ShowTransport a = null;
             try {
@@ -67,6 +74,11 @@ public class DetailsTransport {
             }
             a.getForm().show();
         });
+        
+        BrowserComponent webBrowser = new BrowserComponent();
+        webBrowser.setURL("http://localhost/AllForKids/web/map.html");
+        webBrowser.execute("getDirections("+transport.getDepart()+","+transport.getArrivé()+")");
+        form.add(webBrowser);
         
         Button Rejoindre = new Button("Rejoindre");
         Button Annuler = new Button("Annuler le offre");
@@ -118,6 +130,7 @@ public class DetailsTransport {
             a.getForm().show();
           }
         });
+        
         
         Update.addActionListener((e)->{
         UpdateTransport a = null ;
