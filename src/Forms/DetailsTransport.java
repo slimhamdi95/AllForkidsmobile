@@ -77,7 +77,7 @@ public class DetailsTransport {
         
         BrowserComponent webBrowser = new BrowserComponent();
         webBrowser.setURL("http://localhost/AllForKids/web/map.html");
-        webBrowser.execute("getDirections("+transport.getDepart()+","+transport.getArrivé()+")");
+        //webBrowser.execute("getDirections("+transport.getDepart()+","+transport.getArrivé()+")");
         form.add(webBrowser);
         
         Button Rejoindre = new Button("Rejoindre");
