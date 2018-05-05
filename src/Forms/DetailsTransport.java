@@ -5,17 +5,14 @@
  */
 package Forms;
 
-import Entity.Session;
 import Entity.Transport;
 import Services.TransportService;
 import com.codename1.components.SpanLabel;
+import com.codename1.ui.BrowserComponent;
 import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
-import com.codename1.ui.TextArea;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import static com.codename1.ui.layouts.BoxLayout.Y_AXIS;
 import java.io.IOException;
@@ -32,6 +29,7 @@ public class DetailsTransport {
     TransportService service = new TransportService();
     
     public DetailsTransport(int id){
+        
         this.id = id ;
         Transport transport = new Transport();
         
@@ -44,6 +42,8 @@ public class DetailsTransport {
         transport.setFrais(service.getTransportDetails(id).getFrais());
         transport.setType(service.getTransportDetails(id).getType());
         transport.setId_user(service.getTransportDetails(id).getId_user());
+        transport.setDepart(service.getTransportDetails(id).getDepart());
+        transport.setArrivé(service.getTransportDetails(id).getArrivé());
         
         form = new Form("covoiturage",new BoxLayout(Y_AXIS));
         
@@ -62,9 +62,23 @@ public class DetailsTransport {
         form.add(new Label("type de covoiturage:"));
         form.add(new Label(transport.getType()));
         
-        form.getToolbar().addCommandToRightBar("back", null,(ev)->{HomeForm h=new HomeForm();
-          h.getF().show();
-          });
+        System.out.println(transport.getDepart());
+        System.out.println(transport.getArrivé());
+        
+        form.getToolbar().addCommandToRightBar("back", null, (ets) -> {
+            ShowTransport a = null;
+            try {
+                a = new ShowTransport();
+            } catch (IOException ex) {
+                System.out.println("error");
+            }
+            a.getForm().show();
+        });
+        
+        BrowserComponent webBrowser = new BrowserComponent();
+        webBrowser.setURL("http://localhost/AllForKids/web/map.html");
+        //webBrowser.execute("getDirections("+transport.getDepart()+","+transport.getArrivé()+")");
+        form.add(webBrowser);
         
         Button Rejoindre = new Button("Rejoindre");
         Button Annuler = new Button("Annuler le offre");
@@ -115,6 +129,13 @@ public class DetailsTransport {
             }
             a.getForm().show();
           }
+        });
+        
+        
+        Update.addActionListener((e)->{
+        UpdateTransport a = null ;
+        a = new UpdateTransport(transport);
+        a.getForm().show();
         });
 
     }

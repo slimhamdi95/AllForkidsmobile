@@ -17,6 +17,10 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.validation.LengthConstraint;
+import com.codename1.ui.validation.NumericConstraint;
+import com.codename1.ui.validation.Validator;
+import java.io.IOException;
 
 /**
  *
@@ -28,7 +32,7 @@ public class ajoutTransport {
     
     public ajoutTransport (){
     form = new Form("remplir le formulaire", BoxLayout.y());
-    
+    Validator v = new Validator();
     /*
     form.add(new Label("poit de depart:"));
     TextField depart = new TextField();
@@ -43,11 +47,14 @@ public class ajoutTransport {
     form.add(description);
     
     form.add(new Label("telephone:"));
-    TextField telephone = new TextField();
+    TextField telephone = new TextField("", "numero compose de 8 chiffre",8, TextArea.NUMERIC);
+        v.addConstraint(telephone,new NumericConstraint(true, 10000000, 99999999, "telephone non valide"));
     form.add(telephone);
     
     form.add(new Label("place:"));
-    TextField place = new TextField();
+    TextField place = new TextField("", "1",1, TextArea.NUMERIC);
+        v.addConstraint(place,new LengthConstraint(1));
+        v.addConstraint(place,new NumericConstraint(true));
     form.add(place);
     
     form.add(new Label("frais:"));
@@ -71,12 +78,26 @@ public class ajoutTransport {
             TextArea popupBody = new TextArea("votre offre est valider");
             popupBody.setUIID("PopupBody");
             popupBody.setEditable(false);
+            
+            Button ok = new Button("OK");
+            ok.addActionListener((ActionEvent ee) -> {
+                ShowTransport a = null;
+                try {
+                    a = new ShowTransport();
+                } catch (IOException ex) {
+                    System.out.println("erreuur");
+                }
+                a.getForm().show();
+            });
+            
             d.setLayout(new BorderLayout());
             d.add(BorderLayout.CENTER, popupBody);
+            d.add(BorderLayout.SOUTH,ok);
             d.show();
             d.setTimeout(2000);
             
         });
+   
     }
     
     public Form getForm() {
