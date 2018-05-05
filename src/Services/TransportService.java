@@ -6,7 +6,9 @@
 package Services;
 
 
+import Entity.Etablissement;
 import Entity.Evenement;
+import Entity.Session;
 import Entity.Transport;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
@@ -173,6 +175,15 @@ public class TransportService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listTransportRejoindre;
+    }
+    
+        public void UpdateTransport(Transport transport) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/Allforkids/web/app_dev.php/transport/updateMobile/"+transport.getIdTransport()+"/"
+                +9+ "/"+ transport.getDescription()+ "/"+transport.getTelephone()+ "/"+transport.getPlace()+"/"
+                +transport.getFrais()+ "/" +transport.getType();
+        con.setUrl(Url);
+        NetworkManager.getInstance().addToQueueAndWait(con);
     }
 
 }

@@ -5,7 +5,6 @@
  */
 package Forms;
 
-import Entity.Session;
 import Entity.Transport;
 import Services.TransportService;
 import com.codename1.components.SpanLabel;
@@ -13,9 +12,6 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
-import com.codename1.ui.TextArea;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import static com.codename1.ui.layouts.BoxLayout.Y_AXIS;
 import java.io.IOException;
@@ -62,9 +58,15 @@ public class DetailsTransport {
         form.add(new Label("type de covoiturage:"));
         form.add(new Label(transport.getType()));
         
-        form.getToolbar().addCommandToRightBar("back", null,(ev)->{HomeForm h=new HomeForm();
-          h.getF().show();
-          });
+        form.getToolbar().addCommandToRightBar("back", null, (ets) -> {
+            ShowTransport a = null;
+            try {
+                a = new ShowTransport();
+            } catch (IOException ex) {
+                System.out.println("error");
+            }
+            a.getForm().show();
+        });
         
         Button Rejoindre = new Button("Rejoindre");
         Button Annuler = new Button("Annuler le offre");
@@ -115,6 +117,12 @@ public class DetailsTransport {
             }
             a.getForm().show();
           }
+        });
+        
+        Update.addActionListener((e)->{
+        UpdateTransport a = null ;
+        a = new UpdateTransport(transport);
+        a.getForm().show();
         });
 
     }
