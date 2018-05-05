@@ -6,7 +6,9 @@
 package Services;
 
 
+import Entity.Etablissement;
 import Entity.Evenement;
+import Entity.Session;
 import Entity.Transport;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
@@ -119,17 +121,19 @@ public class TransportService {
                     Transport.setFrais(service.getTransportEntity(new String(con.getResponseData())).getFrais());
                     Transport.setType(service.getTransportEntity(new String(con.getResponseData())).getType());
                     Transport.setId_user(service.getTransportEntity(new String(con.getResponseData())).getId_user());
+                    Transport.setDepart(service.getTransportEntity(new String(con.getResponseData())).getDepart());
+                    Transport.setArrivé(service.getTransportEntity(new String(con.getResponseData())).getArrivé());
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return  Transport ;
     }
     
-    private static int userId = 9;
     public void addTransport (Transport transport){
         ConnectionRequest con = new ConnectionRequest();
+        System.out.println(transport);
         String Url = "http://localhost/Allforkids/web/app_dev.php/transport/newMobile/"
-                  +userId+ "/" + transport.getDescription()+ "/" 
+                  +9+ "/" + transport.getDescription()+ "/" 
                    +transport.getTelephone()+ "/"+transport.getPlace()+"/"+transport.getFrais()
                    + "/" +transport.getType();
         con.setUrl(Url);
@@ -174,4 +178,14 @@ public class TransportService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listTransportRejoindre;
     }
+    
+        public void UpdateTransport(Transport transport) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/Allforkids/web/app_dev.php/transport/updateMobile/"+transport.getIdTransport()+"/"
+                +9+ "/"+ transport.getDescription()+ "/"+transport.getTelephone()+ "/"+transport.getPlace()+"/"
+                +transport.getFrais()+ "/" +transport.getType();
+        con.setUrl(Url);
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+
 }

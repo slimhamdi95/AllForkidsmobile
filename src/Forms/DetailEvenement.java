@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -63,7 +63,7 @@ public class DetailEvenement {
     Button sup = new Button("Supprimer");
 
     public DetailEvenement(Evenement evenement) {
-       
+        id = evenement.getId_evenement();
         f = new Form("Evenement", new BoxLayout(Y_AXIS));
         lb = new SpanLabel("");
         nom = new Label(evenement.getNom(), "SecondaryTitle");
@@ -166,7 +166,7 @@ Container root = LayeredLayout.encloseIn(
           
         boolean df =  Dialog.show("Suppression","Vous les vous vraiment Supprimer L'evenement ?","Oui","Non");
           if(df){
-            es.DeleteEvenement(id);
+            es.DeleteEvenement(evenement.getId_evenement());
                  AffichageEvenement a = null;
                 try {
                     a = new AffichageEvenement();

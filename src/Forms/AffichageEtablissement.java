@@ -51,7 +51,7 @@ public class AffichageEtablissement {
         java.util.List<Etablissement> l = serviceetab.getList2();
         System.out.println(l.toString());
         for (Etablissement e : serviceetab.getList2()) {
-            if (serviceetab.getRoles(Session.getId()).equals("[ROLE_RESPONSABLE]")) {
+            if (serviceetab.getRoles(Session.getId()).equals("[ROLE_RESPONSABLE, ROLE_USER]")) {
                 if (e.getId_user() == Session.getId()) {
                     nom.setText(e.getNom());
 
@@ -105,6 +105,13 @@ public class AffichageEtablissement {
             HomeForm h = new HomeForm();
             h.getF().show();
         });
+        if ((serviceetab.getRoles(Session.getId()).equals("[ROLE_RESPONSABLE, ROLE_USER]"))){
+        form.getToolbar().addCommandToRightBar("Ajouter", null, (ev) -> {
+            AjouterEtablissement h = new AjouterEtablissement();
+            h.getF().show();    
+        });
+        }
+        
         System.out.println("dfbgfdgdhgtedrggdrgedrgdrgr" + serviceetab.getRoles(1));
     }
 

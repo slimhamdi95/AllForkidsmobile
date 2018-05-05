@@ -27,6 +27,7 @@ import java.util.Map;
  */
 public class EtablissementService {
       String a ="";
+      int i ;
     private ConnectionRequest connectionRequest;
     public static Form listeEtabs;
     private static int userId = Session.getId(); //Session.getId();
@@ -34,7 +35,7 @@ public class EtablissementService {
     public void addEtablissement(Etablissement etab) {
        ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/Allforkids/web/app_dev.php/Etab/new1/"
-                  +11+ "/" + etab.getNom()+ "/" 
+                  +userId+ "/" + etab.getNom()+ "/" 
                    +etab.getType()+ "/"+etab.getRegion()+"/"+etab.getVille()
                    + "/" +etab.getDescription()+ "/" +etab.getImage()+ "/"+"Non valide";
         con.setUrl(Url);
@@ -186,6 +187,7 @@ public class EtablissementService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
+    
     public void UpdateEtablissement(Etablissement etab) {
         ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/Allforkids/web/app_dev.php/Etab/update1/"+etab.getId_etablissement()+"/"
@@ -194,11 +196,11 @@ public class EtablissementService {
                    + "/" +etab.getDescription()+ "/" +etab.getImage()+ "/"+etab.getVerification();
         con.setUrl(Url);
 
-        con.addResponseListener((e) -> {
-            String str = new String(con.getResponseData());
-            System.out.println(str);
+        /*con.addResponseListener((e) -> {
+            //String str = new String(con.getResponseData());
+            //System.out.println(str);
             
-        });
+        });*/
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
      public String getRoles(int id){
@@ -261,6 +263,39 @@ public class EtablissementService {
             
           e = obj.get("mail").toString();
              
+            
+        } catch (IOException ex) {
+        }
+        return e;
+        
+    }
+      public int getNbrej(int idetab,int iduser){
+      
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/Allforkids/web/app_dev.php/Etab/findrejoindre/"+idetab+"/"+iduser);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                 EtablissementService ser = new EtablissementService();
+                 i = ser.getNbrej2(new String(con.getResponseData()));
+             
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        
+     return i ;
+    }
+     public int getNbrej2(String json) {
+                
+         int  e = 0 ;
+        try {
+            System.out.println(json);
+            JSONParser j = new JSONParser();
+            
+            Map<String, Object> obj = j.parseJSON(new CharArrayReader(json.toCharArray()));
+            
+            float idetab = Float.parseFloat(obj.get("nb").toString());
+              e = (int)idetab;
             
         } catch (IOException ex) {
         }
