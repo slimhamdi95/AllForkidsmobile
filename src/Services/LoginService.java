@@ -53,7 +53,9 @@ public class LoginService  {
                      e.setDate(ser.getUser4(new String(con.getResponseData())).getDate());
                     e.setPrenom(ser.getUser4(new String(con.getResponseData())).getPrenom());
                  e.setUsername( ser.getUser4(new String(con.getResponseData())).getUsername());
-                 e.setPassword(ser.getUser4(new String(con.getResponseData())).getPassword());
+                   e.setRoles(ser.getUser4(new String(con.getResponseData())).getRoles());
+                     e.setEmail(ser.getUser4(new String(con.getResponseData())).getEmail());
+              
               
                 
                 
@@ -86,9 +88,10 @@ public class LoginService  {
                   e.setDate(events.get("date").toString());
                    e.setNom(events.get("nom").toString());
                    e.setCin(events.get("cin").toString());
+                    e.setEmail(events.get("email").toString());
                 e.setPassword(events.get("password").toString());
               
-                 
+                 e.setRoles(events.get("role").toString());
             
             } catch (IOException ex) {
         }

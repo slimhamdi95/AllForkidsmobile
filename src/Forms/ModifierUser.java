@@ -42,7 +42,8 @@ public class ModifierUser {
 
         f = new Form("Modifier Profil", BoxLayout.y());
         LoginService ls = new LoginService();
-        Username = new TextField(ls.showDetail(Session.getUsername()).getUsername(), "username");
+        
+        Username = new TextField(ls.showDetail(Session.getUsername()).getUsername());
         nom = new TextField(ls.showDetail(Session.getUsername()).getNom());
         prenom = new TextField(ls.showDetail(Session.getUsername()).getPrenom());
         role = new TextField(ls.showDetail(Session.getUsername()).getRoles());
@@ -89,7 +90,9 @@ public class ModifierUser {
         f.add(email);
         f.add(datePicker);
         f.add(pic);
+       
         f.add(cin);
+        f.add(role);
         f.add(valider);
 
         
