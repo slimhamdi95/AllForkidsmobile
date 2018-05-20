@@ -133,7 +133,9 @@ public class TransportService {
         ConnectionRequest con = new ConnectionRequest();
         System.out.println(transport);
         String Url = "http://localhost/Allforkids/web/app_dev.php/transport/newMobile/"
-                  +9+ "/" + transport.getDescription()+ "/" 
+                  +9+ "/" + transport.getDescription()+
+                "/" + transport.getDepartName()+"/" + transport.getArriveName()+ "/" 
+                + 00000000000+"/" + 00000000000+ "/" 
                    +transport.getTelephone()+ "/"+transport.getPlace()+"/"+transport.getFrais()
                    + "/" +transport.getType();
         con.setUrl(Url);

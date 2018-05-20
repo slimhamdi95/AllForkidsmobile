@@ -33,15 +33,15 @@ public class ajoutTransport {
     public ajoutTransport (){
     form = new Form("remplir le formulaire", BoxLayout.y());
     Validator v = new Validator();
-    /*
+    
     form.add(new Label("poit de depart:"));
     TextField depart = new TextField();
     form.add(depart);
     
     form.add(new Label("poit d'arrivé:"));
-    TextField arrivé = new TextField();
-    form.add(arrivé);
-    */
+    TextField arrive = new TextField();
+    form.add(arrive);
+    
     form.add(new Label("description:"));
     TextField description = new TextField();
     form.add(description);
@@ -72,10 +72,10 @@ public class ajoutTransport {
     
     valider.addActionListener((ActionEvent e) -> {
             TransportService service = new TransportService();
-            Transport transport = new Transport(description.getText(),telephone.getText(),place.getText(),frais.getText(),"occasionnellement");
+            Transport transport = new Transport(depart.getText(),arrive.getText(),description.getText(),telephone.getText(),place.getText(),frais.getText(),"occasionnellement");
             service.addTransport(transport);
             Dialog d = new Dialog("Succes!");
-            TextArea popupBody = new TextArea("votre offre est valider");
+            TextArea popupBody = new TextArea("votrce offre est valider");
             popupBody.setUIID("PopupBody");
             popupBody.setEditable(false);
             
