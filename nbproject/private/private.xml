@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Services/LoginService.java</file>
             <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/Inscrit.java</file>
             <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Entity/BCrypt.java</file>
             <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/ModifierUser.java</file>
             <file>file:/C:/Users/casa-net/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/HomeForm.java</file>
+=======
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/DetailsTransport.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Services/TransportService.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Forms/ajoutTransport.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/AllForkidsmobile/src/Entity/Transport.java</file>
+>>>>>>> db58b1a73e5a866c78c7ab833be8237dfe6b8635
         </group>
     </open-files>
 </project-private>
