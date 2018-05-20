@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<resource majorVersion="1" minorVersion="7" useXmlUI="false">
+<resource majorVersion="1" minorVersion="9" useXmlUI="false">
     <image name="android-icon.png" type="multi"  />
     <image name="apple-icon.png" type="multi"  />
+    <image name="b1.jpg" type="multi"  />
     <image name="back-command.png" type="multi"  />
     <image name="border.png"  />
     <image name="Button.dis#borderBottom_1.png" type="multi"  />
@@ -46,6 +47,7 @@
     <image name="Dialog.borderTopL_1.png" type="multi"  />
     <image name="Dialog.borderTopR_1.png" type="multi"  />
     <image name="duke-no-logos.png" type="multi"  />
+    <ui name="Login" />
     <image name="Menu.borderBottom_2.png" type="multi"  />
     <image name="Menu.borderBottomL_2.png" type="multi"  />
     <image name="Menu.borderBottomR_2.png" type="multi"  />
@@ -168,9 +170,9 @@
         <val key="CalendarDateLabel.fgColor" value="ffffff" />
         <font key="CalendarDateLabel.font" type="ttf" face="0" style="1" size="16" name="native:MainThin" family="native:MainThin" sizeSettings="3" actualSize="4.0" />
         <val key="CalendarDay.align" value="4" />
-        <border key="CalendarDay.border" type="line" thickness="1" color="13421772" />
+        <border key="CalendarDay.border" type="line" millimeters="false" thickness="1.0" color="13421772" />
         <val key="CalendarDay.dis#align" value="4" />
-        <border key="CalendarDay.dis#border" type="line" thickness="1" color="13421772" />
+        <border key="CalendarDay.dis#border" type="line" millimeters="false" thickness="1.0" color="13421772" />
         <val key="CalendarDay.dis#fgColor" value="999999" />
         <font key="CalendarDay.dis#font" type="system" face="0" style="0" size="0" />
         <val key="CalendarDay.dis#margin" value="0,0,0,0" />
@@ -179,13 +181,13 @@
         <font key="CalendarDay.font" type="ttf" face="0" style="0" size="0" name="native:MainThin" family="native:MainThin" sizeSettings="3" actualSize="3.0" />
         <val key="CalendarDay.margin" value="0,0,0,0" />
         <val key="CalendarDay.press#align" value="4" />
-        <border key="CalendarDay.press#border" type="line" thickness="1" color="13421772" />
+        <border key="CalendarDay.press#border" type="line" millimeters="false" thickness="1.0" color="13421772" />
         <val key="CalendarDay.press#fgColor" value="0" />
         <font key="CalendarDay.press#font" type="ttf" face="0" style="0" size="0" name="native:MainThin" family="native:MainThin" sizeSettings="3" actualSize="3.0" />
         <val key="CalendarDay.press#margin" value="0,0,0,0" />
         <val key="CalendarDay.press#transparency" value="0" />
         <val key="CalendarDay.sel#align" value="4" />
-        <border key="CalendarDay.sel#border" type="line" thickness="1" color="13421772" />
+        <border key="CalendarDay.sel#border" type="line" millimeters="false" thickness="1.0" color="13421772" />
         <val key="CalendarDay.sel#fgColor" value="0" />
         <font key="CalendarDay.sel#font" type="ttf" face="0" style="0" size="0" name="native:MainThin" family="native:MainThin" sizeSettings="3" actualSize="3.0" />
         <val key="CalendarDay.sel#margin" value="0,0,0,0" />
@@ -195,13 +197,13 @@
         <val key="CalendarDayArea.padding" value="0,0,0,0" />
         <val key="CalendarSelectedDay.align" value="4" />
         <val key="CalendarSelectedDay.bgColor" value="3399ff" />
-        <border key="CalendarSelectedDay.border" type="line" thickness="1" color="13421772" />
+        <border key="CalendarSelectedDay.border" type="line" millimeters="false" thickness="1.0" color="13421772" />
         <val key="CalendarSelectedDay.fgColor" value="ffffff" />
         <font key="CalendarSelectedDay.font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="CalendarSelectedDay.margin" value="0,0,0,0" />
         <val key="CalendarSelectedDay.press#align" value="4" />
         <val key="CalendarSelectedDay.press#bgColor" value="3399ff" />
-        <border key="CalendarSelectedDay.press#border" type="line" thickness="1" color="13421772" />
+        <border key="CalendarSelectedDay.press#border" type="line" millimeters="false" thickness="1.0" color="13421772" />
         <val key="CalendarSelectedDay.press#fgColor" value="999999" />
         <font key="CalendarSelectedDay.press#font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="CalendarSelectedDay.press#margin" value="0,0,0,0" />
@@ -683,18 +685,18 @@
         <val key="SliderFull.sel#padding" value="0,0,4,4" />
         <val key="SliderFull.transparency" value="0" />
         <val key="Tab.bgColor" value="5bc8fb" />
-        <border key="Tab.border" type="line" thickness="1" color="16777215" />
+        <border key="Tab.border" type="line" millimeters="false" thickness="1.0" color="16777215" />
         <val key="Tab.fgColor" value="ffffff" />
         <font key="Tab.font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="Tab.margin" value="0,0,0,0" />
         <val key="Tab.press#bgColor" value="ffffff" />
-        <border key="Tab.press#border" type="line" thickness="1" color="16777215" />
+        <border key="Tab.press#border" type="line" millimeters="false" thickness="1.0" color="16777215" />
         <val key="Tab.press#fgColor" value="0" />
         <font key="Tab.press#font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="Tab.press#margin" value="0,0,0,0" />
         <val key="Tab.press#transparency" value="255" />
         <val key="Tab.sel#bgColor" value="ffffff" />
-        <border key="Tab.sel#border" type="line" thickness="1" color="16777215" />
+        <border key="Tab.sel#border" type="line" millimeters="false" thickness="1.0" color="16777215" />
         <val key="Tab.sel#fgColor" value="0" />
         <font key="Tab.sel#font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="Tab.sel#margin" value="0,0,0,0" />
@@ -719,14 +721,14 @@
         <val key="TextArea.transparency" value="0" />
         <gradient key="TextField.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
         <val key="TextField.bgType" value="0" />
-        <border key="TextField.border" type="line" thickness="1" color="10066329" />
+        <border key="TextField.border" type="line" millimeters="false" thickness="1.0" color="10066329" />
         <val key="TextField.fgColor" value="0" />
         <font key="TextField.font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="TextField.marUnit" value="2,2,2,2" />
         <val key="TextField.margin" value="1,1,1,1" />
         <gradient key="TextField.press#bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
         <val key="TextField.press#bgType" value="0" />
-        <border key="TextField.press#border" type="line" thickness="1" color="6015227" />
+        <border key="TextField.press#border" type="line" millimeters="false" thickness="1.0" color="6015227" />
         <val key="TextField.press#fgColor" value="0" />
         <font key="TextField.press#font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="TextField.press#marUnit" value="2,2,2,2" />
@@ -734,7 +736,7 @@
         <val key="TextField.press#transparency" value="0" />
         <gradient key="TextField.sel#bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
         <val key="TextField.sel#bgType" value="0" />
-        <border key="TextField.sel#border" type="line" thickness="1" color="10066329" />
+        <border key="TextField.sel#border" type="line" millimeters="false" thickness="1.0" color="10066329" />
         <val key="TextField.sel#fgColor" value="0" />
         <font key="TextField.sel#font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
         <val key="TextField.sel#marUnit" value="2,2,2,2" />
